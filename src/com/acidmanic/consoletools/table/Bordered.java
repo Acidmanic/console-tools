@@ -9,22 +9,27 @@ import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
 import com.acidmanic.consoletools.drawing.ascii.AsciiBorders;
 import com.acidmanic.consoletools.rendering.BorderRenderer;
+import com.acidmanic.consoletools.rendering.Renderable;
 import com.acidmanic.consoletools.rendering.RenderingContext;
 
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public class BorderedCell extends Cell {
+public class Bordered  implements Renderable{
 
     private AsciiBorder asciiBorder;
+    private final Renderable owner;
 
-    public BorderedCell() {
-        this.asciiBorder = AsciiBorders.SOLID;
+    public Bordered(Renderable owner,AsciiBorder asciiBorder) {
+        this.asciiBorder = asciiBorder;
+        this.owner = owner;
     }
+    
+    
 
-    public BorderedCell(String content) {
-        super(content);
+    public Bordered(Renderable owner) {
+        this.owner = owner;
         this.asciiBorder = AsciiBorders.SOLID;
     }
 
@@ -38,7 +43,7 @@ public class BorderedCell extends Cell {
 
     @Override
     public Size measure() {
-        Size size = super.measure();
+        Size size = owner.measure();
         return size.add(new Size(2, 2));
     }
 
@@ -48,8 +53,8 @@ public class BorderedCell extends Cell {
         context.resetBoth();
         context.moveHorozontally(1);
         context.moveVertically(1);
-        context.openObject(super.measure());
-        super.render(context);
+        context.openObject(owner.measure());
+        owner.render(context);
         context.closeObject();
     }
 
