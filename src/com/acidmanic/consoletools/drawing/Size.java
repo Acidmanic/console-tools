@@ -38,5 +38,9 @@ public class Size {
     public void setLines(int lines) {
         this.lines = lines;
     }
+
+    public Size add(Size size) {
+        return new Size(this.columns+size.columns,this.lines+size.lines);
+    }
     
 }
