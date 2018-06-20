@@ -7,6 +7,7 @@ package console.tools;
 
 import com.acidmanic.consoletools.table.Cell;
 import com.acidmanic.consoletools.drawing.Padding;
+import com.acidmanic.consoletools.table.BorderedCell;
 import com.acidmanic.consoletools.table.Row;
 import com.acidmanic.consoletools.table.Table;
 
@@ -23,7 +24,7 @@ public class ConsoleTools {
         Table table = new Table();
 
         Row row1 = new Row();
-        row1.getCells().add(new Cell("Mani\nis a nice boy\n"));
+        row1.getCells().add(new BorderedCell("Mani\nis a nice boy\nyes he is"));
         row1.getCells().add(new Cell("  Mona  "));
         row1.getCells().add(new Cell("  Mina  "));
         row1.getCells().add(new Cell("  Papa  "));
@@ -31,13 +32,13 @@ public class ConsoleTools {
         Row row2 = new Row();
         row2.getCells().add(new Cell(" Mani "));
         row2.getCells().add(new Cell(" Mona\n  Sometime goes on my nerves "));
-        row2.getCells().add(new Cell("  Mina  "));
+        row2.getCells().add(new BorderedCell("  Mina  "));
         row2.getCells().add(new Cell("  Papa  "));
 
         Row row3 = new Row();
         row3.getCells().add(new Cell(" Mani "));
-        row3.getCells().add(new Cell(" Mona "));
-        row3.getCells().add(new Cell(" Mina\n is the best mum "));
+        row3.getCells().add(new BorderedCell(" Mona "));
+        row3.getCells().add(new Cell(" Mina\nis the best mum "));
         row3.getCells().add(new Cell("  Papa  "));
 
         Row row4 = new Row();
@@ -53,7 +54,7 @@ public class ConsoleTools {
         r1.getCells().add(new Cell("X"));
         Row r2 = new Row();
         r2.getCells().add(new Cell("O"));
-        r2.getCells().add(new Cell("X"));
+        r2.getCells().add(new BorderedCell("X"));
         r2.getCells().add(new Cell("O"));
         tabCell.getRows().add(r1);
         tabCell.getRows().add(r2);
