@@ -5,6 +5,8 @@
  */
 package com.acidmanic.consoletools;
 
+import com.acidmanic.consoletools.drawing.Size;
+
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)

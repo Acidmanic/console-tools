@@ -6,11 +6,11 @@
 package com.acidmanic.consoletools.table;
 
 import com.acidmanic.consoletools.Renderable;
-import com.acidmanic.consoletools.Size;
+import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.BufferedStringRenderingContext;
-import com.acidmanic.consoletools.Clip;
+import com.acidmanic.consoletools.drawing.Clip;
 import com.acidmanic.consoletools.Paddable;
-import com.acidmanic.consoletools.Position;
+import com.acidmanic.consoletools.drawing.Position;
 import java.util.ArrayList;
 import java.util.List;
 import com.acidmanic.consoletools.RenderingContext;

@@ -5,7 +5,7 @@
  */
 package com.acidmanic.consoletools.table;
 
-import com.acidmanic.consoletools.Size;
+import com.acidmanic.consoletools.drawing.Size;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

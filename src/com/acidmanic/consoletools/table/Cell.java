@@ -8,7 +8,7 @@ package com.acidmanic.consoletools.table;
 import com.acidmanic.consoletools.Measurer;
 import com.acidmanic.consoletools.Paddable;
 import com.acidmanic.consoletools.Renderable;
-import com.acidmanic.consoletools.Size;
+import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.RenderingContext;
 
 /**

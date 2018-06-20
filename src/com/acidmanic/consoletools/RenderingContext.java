@@ -5,6 +5,9 @@
  */
 package com.acidmanic.consoletools;
 
+import com.acidmanic.consoletools.drawing.Size;
+import com.acidmanic.consoletools.drawing.Position;
+
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
