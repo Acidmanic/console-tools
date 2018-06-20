@@ -10,5 +10,16 @@ package com.acidmanic.consoletools;
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
 public class Position extends Size{
+
+    public Position(int columns, int lines) {
+        super(columns, lines);
+    }
+
+    
+
+    public Position() {
+    }
+    
+    
     
 }

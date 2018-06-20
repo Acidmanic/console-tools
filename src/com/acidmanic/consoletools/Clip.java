@@ -69,4 +69,12 @@ public class Clip {
         this.endLine = endLine;
     }
 
+    public boolean containsColumn(int column) {
+        return column >=this.startColumn && column <= this.endColumn;
+    }
+
+    
+    public boolean containsLine(int line) {
+        return line >=this.startLine && line <= this.endLine;
+    }
 }
