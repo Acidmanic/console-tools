@@ -31,7 +31,7 @@ public abstract class RenderingContextBase<Tin, Tout> implements RenderingContex
     }
 
     @Override
-    public void openObject(Size objectSize) {
+    public void openObject(Size size) {
         this.clipStack.push(this.currentClip);
         this.currentClip = new Clip(this.getCurrentPosition(), size);
     }
@@ -91,4 +91,10 @@ public abstract class RenderingContextBase<Tin, Tout> implements RenderingContex
         return this.currentPosition;
     }
 
+    @Override
+    public Clip getCurrentClip() {
+        return this.currentClip;
+    }
+
+    
 }
