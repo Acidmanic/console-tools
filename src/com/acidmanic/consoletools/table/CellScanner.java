@@ -5,7 +5,7 @@
  */
 package com.acidmanic.consoletools.table;
 
-import com.acidmanic.consoletools.Renderable;
+import com.acidmanic.consoletools.rendering.Renderable;
 
 /**
  *

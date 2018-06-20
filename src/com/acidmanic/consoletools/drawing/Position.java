@@ -3,14 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acidmanic.consoletools;
+package com.acidmanic.consoletools.drawing;
 
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public interface Renderable {
-    void render(StringRenderingContext context);
-    Size measure();
+public class Position extends Size{
+
+    public Position(int columns, int lines) {
+        super(columns, lines);
+    }
+
+    
+
+    public Position() {
+    }
+    
+    
     
 }

@@ -5,11 +5,13 @@
  */
 package com.acidmanic.consoletools.table;
 
-import com.acidmanic.consoletools.Measurer;
-import com.acidmanic.consoletools.Paddable;
-import com.acidmanic.consoletools.Renderable;
-import com.acidmanic.consoletools.Size;
-import com.acidmanic.consoletools.StringRenderingContext;
+import com.acidmanic.consoletools.drawing.Padding;
+import com.acidmanic.consoletools.drawing.ascii.StringPadder;
+import com.acidmanic.consoletools.drawing.ascii.Measurer;
+import com.acidmanic.consoletools.drawing.ascii.Paddable;
+import com.acidmanic.consoletools.rendering.Renderable;
+import com.acidmanic.consoletools.drawing.Size;
+import com.acidmanic.consoletools.rendering.RenderingContext;
 
 /**
  *
@@ -36,7 +38,7 @@ public class Cell implements Renderable,Paddable{
     }
 
     @Override
-    public void render(StringRenderingContext context) {
+    public void render(RenderingContext context) {
         
         context.put(this.exposeContent());
     }

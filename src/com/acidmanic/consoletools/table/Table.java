@@ -5,15 +5,16 @@
  */
 package com.acidmanic.consoletools.table;
 
-import com.acidmanic.consoletools.Renderable;
-import com.acidmanic.consoletools.Size;
-import com.acidmanic.consoletools.BufferedStringRenderingContext;
-import com.acidmanic.consoletools.Clip;
-import com.acidmanic.consoletools.Paddable;
-import com.acidmanic.consoletools.Position;
-import com.acidmanic.consoletools.StringRenderingContext;
+import com.acidmanic.consoletools.drawing.Padding;
+import com.acidmanic.consoletools.rendering.Renderable;
+import com.acidmanic.consoletools.drawing.Size;
+import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
+import com.acidmanic.consoletools.drawing.Clip;
+import com.acidmanic.consoletools.drawing.ascii.Paddable;
+import com.acidmanic.consoletools.drawing.Position;
 import java.util.ArrayList;
 import java.util.List;
+import com.acidmanic.consoletools.rendering.RenderingContext;
 
 /**
  *
@@ -34,17 +35,17 @@ public class Table implements Renderable {
     public String render() {
         BufferedStringRenderingContext context
                 = new BufferedStringRenderingContext(this.measure());
-        context.reset();
+        context.clear();
         this.render(context);
-        return context.renrerAll();
+        return context.represent();
     }
 
     @Override
-    public void render(StringRenderingContext context) {
+    public void render(RenderingContext context) {
         this.render(context, this.getRows());
     }
 
-    private void render(StringRenderingContext context, List<Row> renderRows) {
+    private void render(RenderingContext context, List<Row> renderRows) {
         TableSizeManager manager
                 = new TableSizeManager(renderRows);
         for (Row row : renderRows) {
@@ -52,7 +53,7 @@ public class Table implements Renderable {
             int rowHeight = manager.getRowHeight(row);
             for (int i = 0; i < columns; i++) {
                 Renderable cell = row.getCells().get(i);
-                renderRenderableOnContext(context, cell, manager.getMeasuredSizeForCell(row,i));
+                renderCell(context, cell, manager.getMeasuredSizeForCell(row, i));
                 context.moveHorozontally(manager.getColumnWidthForCell(row, i));
             }
             context.resetHorizontally();
@@ -60,15 +61,10 @@ public class Table implements Renderable {
         }
     }
 
-    private void renderRenderableOnContext(StringRenderingContext context,
-            Renderable renderable,
-            Size measuredSize) {
-        Position currentPosition = context.getCurrentPosition();
-        context.pushClip(new Clip(currentPosition,measuredSize));
-        renderable.render(context);
-        context.resetHorizontally();
-        context.resetVertically();
-        context.popClip();
+    private void renderCell(RenderingContext context, Renderable cell, Size cellSize) {
+        context.openObject(cellSize);
+        cell.render(context);
+        context.closeObject();
     }
 
     @Override
@@ -77,18 +73,16 @@ public class Table implements Renderable {
                 = new TableSizeManager(this.getRows());
         return manager.getTotalSize();
     }
-    
-    
-    
-    public void setCellsPadding(Padding padding){
+
+    public void setCellsPadding(Padding padding) {
         scanAllCells(cell -> {
-            if(cell instanceof Paddable){
-                ((Paddable)cell).setPadding(padding);
+            if (cell instanceof Paddable) {
+                ((Paddable) cell).setPadding(padding);
             }
         });
     }
-    
-    public void scanAllCells(CellScanner scanner){
+
+    public void scanAllCells(CellScanner scanner) {
         this.rows.forEach(row -> row.getCells()
                 .forEach(cell -> scanner.scan(cell)));
     }

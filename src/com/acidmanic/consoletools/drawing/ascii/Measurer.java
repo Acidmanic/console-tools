@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acidmanic.consoletools;
+package com.acidmanic.consoletools.drawing.ascii;
 
-import com.acidmanic.consoletools.table.Padding;
+import com.acidmanic.consoletools.drawing.Size;
+import com.acidmanic.consoletools.drawing.Padding;
 
 /**
  *
