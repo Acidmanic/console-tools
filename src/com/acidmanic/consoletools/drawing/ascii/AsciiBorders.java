@@ -15,4 +15,11 @@ public final class AsciiBorders {
             " ", " ", " ", " ", " ", " ", " ");
     public static final AsciiBorder SOLID = new AsciiBorder("─", "│", "─", "│",
             "┌", "┐", "└", "┘", "├", "┤", "┬", "┴", "┼");
+    
+    public static final AsciiBorder BOLD = new AsciiBorder("━", "┃", "━", "┃",
+            "┏", "┓", "┗", "┛", "┣", "┫", "┳", "┻", "╋");
+    
+    public static final AsciiBorder DOUBLELINE = new AsciiBorder("═", "║", "═", "║",
+            "╔", "╗", "╚", "╝", "╠", "╣", "╦", "╩", "╬");
+    
 }
