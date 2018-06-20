@@ -7,6 +7,9 @@ package console.tools;
 
 import com.acidmanic.consoletools.table.Cell;
 import com.acidmanic.consoletools.drawing.Padding;
+import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
+import com.acidmanic.consoletools.drawing.ascii.AsciiBorders;
+import com.acidmanic.consoletools.table.Bordered;
 import com.acidmanic.consoletools.table.Row;
 import com.acidmanic.consoletools.table.Table;
 
@@ -23,7 +26,7 @@ public class ConsoleTools {
         Table table = new Table();
 
         Row row1 = new Row();
-        row1.getCells().add(new Cell("Mani\nis a nice boy\n"));
+        row1.getCells().add(new Bordered(new Cell("Mani\nis a nice boy\nyes he is")));
         row1.getCells().add(new Cell("  Mona  "));
         row1.getCells().add(new Cell("  Mina  "));
         row1.getCells().add(new Cell("  Papa  "));
@@ -31,20 +34,20 @@ public class ConsoleTools {
         Row row2 = new Row();
         row2.getCells().add(new Cell(" Mani "));
         row2.getCells().add(new Cell(" Mona\n  Sometime goes on my nerves "));
-        row2.getCells().add(new Cell("  Mina  "));
+        row2.getCells().add(new Bordered(new Cell("  Mina  "),AsciiBorders.DOUBLELINE));
         row2.getCells().add(new Cell("  Papa  "));
 
         Row row3 = new Row();
         row3.getCells().add(new Cell(" Mani "));
-        row3.getCells().add(new Cell(" Mona "));
-        row3.getCells().add(new Cell(" Mina\n is the best mum "));
+        row3.getCells().add(new Bordered(new Cell(" Mona ")));
+        row3.getCells().add(new Bordered(new Cell(" Mina\nis the best mum ")));
         row3.getCells().add(new Cell("  Papa  "));
 
         Row row4 = new Row();
         row4.getCells().add(new Cell(" Mani "));
-        row4.getCells().add(new Cell(" Mona "));
-        row4.getCells().add(new Cell(" Mina "));
-        row4.getCells().add(new Cell("  Papa \n is the best dad"));
+        row4.getCells().add(new Bordered(new Cell(" Mona ")));
+        row4.getCells().add(new Bordered(new Cell(" Mina ")));
+        row4.getCells().add(new Bordered(new Cell("  Papa \n is the best dad")));
 
         Table tabCell = new Table();
         Row r1 = new Row();
@@ -60,9 +63,9 @@ public class ConsoleTools {
         tabCell.getRows().add(r1);
 
         Row row5 = new Row();
-        row5.getCells().add(new Cell("Laya"));
-        row5.getCells().add(tabCell);
-        row5.getCells().add(new Cell("Yalda"));
+        row5.getCells().add(new Bordered(new Cell("Laya"),AsciiBorders.DOUBLELINE));
+        row5.getCells().add(new Bordered(tabCell,AsciiBorders.BOLD));
+        row5.getCells().add(new Bordered(new Cell("Yalda"),AsciiBorders.DOUBLELINE));
 
         table.getRows().add(row1);
         table.getRows().add(row2);

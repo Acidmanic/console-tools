@@ -5,6 +5,7 @@
  */
 package com.acidmanic.consoletools.rendering;
 
+import com.acidmanic.consoletools.drawing.Clip;
 import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.drawing.Position;
 
@@ -42,5 +43,5 @@ public interface RenderingContext<Tin,Tout> {
     
     Position getCurrentPosition();
 
-    
+    Clip getCurrentClip();
 }
