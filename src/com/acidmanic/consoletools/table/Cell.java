@@ -9,7 +9,7 @@ import com.acidmanic.consoletools.Measurer;
 import com.acidmanic.consoletools.Paddable;
 import com.acidmanic.consoletools.Renderable;
 import com.acidmanic.consoletools.Size;
-import com.acidmanic.consoletools.StringRenderingContext;
+import com.acidmanic.consoletools.RenderingContext;
 
 /**
  *
@@ -36,7 +36,7 @@ public class Cell implements Renderable,Paddable{
     }
 
     @Override
-    public void render(StringRenderingContext context) {
+    public void render(RenderingContext context) {
         
         context.put(this.exposeContent());
     }

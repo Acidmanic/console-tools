@@ -10,7 +10,7 @@ package com.acidmanic.consoletools;
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
 public interface Renderable {
-    void render(StringRenderingContext context);
+    void render(RenderingContext context);
     Size measure();
     
 }
