@@ -5,6 +5,7 @@
  */
 package com.acidmanic.consoletools.table;
 
+import com.acidmanic.consoletools.drawing.Padding;
 import com.acidmanic.consoletools.rendering.Renderable;
 import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
