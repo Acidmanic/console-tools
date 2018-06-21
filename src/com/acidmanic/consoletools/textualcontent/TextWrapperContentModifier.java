@@ -27,6 +27,7 @@ public class TextWrapperContentModifier extends ContentModifier {
         for (String line : lines) {
             line = wrapIfNeeded(line);
             sb.append(sep).append(line);
+            sep="\n";
         }
         return sb.toString();
     }
@@ -44,10 +45,11 @@ public class TextWrapperContentModifier extends ContentModifier {
                     ret.append(sep).append(starter);
                 }
                 width = 0;
-                ret.append("\\n");
+                ret.append("\n");
             }
             if (!word.isEmpty()) {
                 ret.append(sep).append(word);
+                width += word.length();
                 sep = " ";
             }
         }
