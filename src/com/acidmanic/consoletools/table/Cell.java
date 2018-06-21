@@ -12,6 +12,10 @@ import com.acidmanic.consoletools.drawing.ascii.Paddable;
 import com.acidmanic.consoletools.rendering.Renderable;
 import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.rendering.RenderingContext;
+import com.acidmanic.consoletools.textualcontent.ContentModifier;
+import com.acidmanic.consoletools.textualcontent.ContentModifierManager;
+import com.acidmanic.consoletools.textualcontent.PadderContentModifier;
+import com.acidmanic.consoletools.textualcontent.RawStringContent;
 
 /**
  *
@@ -20,6 +24,9 @@ import com.acidmanic.consoletools.rendering.RenderingContext;
 public class Cell implements Renderable,Paddable{
 
     private String content;
+    private ContentModifierManager modifierManager;
+    
+    
     private Padding padding;
     
     public Cell() {
@@ -29,6 +36,7 @@ public class Cell implements Renderable,Paddable{
     public Cell(String content) {
         this.content = content;
         this.padding = new Padding(0);
+        this.modifierManager = new ContentModifierManager();
     }
     
     
@@ -44,7 +52,8 @@ public class Cell implements Renderable,Paddable{
     }
 
     private String exposeContent() {
-        return new StringPadder().pad(this.content,this.padding);
+        return modifierManager
+                .applyAll(new RawStringContent(content)).getContent();
     }
 
     @Override
@@ -56,6 +65,7 @@ public class Cell implements Renderable,Paddable{
     @Override
     public void setPadding(Padding padding) {
         this.padding = padding;
+        modifierManager.setModifier(new PadderContentModifier(padding, null));
     }
 
     public String getContent() {

@@ -34,7 +34,7 @@ public class ConsoleTools {
         Row row2 = new Row();
         row2.getCells().add(new Cell(" Mani "));
         row2.getCells().add(new Cell(" Mona\n  Sometime goes on my nerves "));
-        row2.getCells().add(new Bordered(new Cell("  Mina  "),AsciiBorders.DOUBLELINE));
+        row2.getCells().add(new Bordered(new Cell("  Mina  "), AsciiBorders.DOUBLELINE));
         row2.getCells().add(new Cell("  Papa  "));
 
         Row row3 = new Row();
@@ -63,9 +63,11 @@ public class ConsoleTools {
         tabCell.getRows().add(r1);
 
         Row row5 = new Row();
-        row5.getCells().add(new Bordered(new Cell("Laya"),AsciiBorders.DOUBLELINE));
-        row5.getCells().add(new Bordered(tabCell,AsciiBorders.BOLD));
-        row5.getCells().add(new Bordered(new Cell("Yalda"),AsciiBorders.DOUBLELINE));
+        row5.getCells().add(new Bordered(new Cell("Laya"), AsciiBorders.DOUBLELINE));
+        row5.getCells().add(new Bordered(tabCell, AsciiBorders.BOLD));
+
+        Cell yaldaCell = new Cell("Yalda");
+        row5.getCells().add(new Bordered(yaldaCell, AsciiBorders.DOUBLELINE));
 
         table.getRows().add(row1);
         table.getRows().add(row2);
@@ -75,7 +77,7 @@ public class ConsoleTools {
         table.getRows().add(row1);
 
         tabCell.setCellsPadding(new Padding(1, 0, 4, 1));
-
+        yaldaCell.setPadding(new Padding(4));
         System.out.println(table.render());
 
     }
