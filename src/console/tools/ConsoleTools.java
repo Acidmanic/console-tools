@@ -33,7 +33,9 @@ public class ConsoleTools {
 
         Row row2 = new Row();
         row2.getCells().add(new Cell(" Mani "));
-        row2.getCells().add(new Cell(" Mona\n  Sometime goes on my nerves "));
+        Cell monaCell = new Cell(" Mona\n  Sometime goes on my nerves ");
+        monaCell.setMaximumWidth(10);
+        row2.getCells().add(monaCell);
         row2.getCells().add(new Bordered(new Cell("  Mina  "), AsciiBorders.DOUBLELINE));
         row2.getCells().add(new Cell("  Papa  "));
 

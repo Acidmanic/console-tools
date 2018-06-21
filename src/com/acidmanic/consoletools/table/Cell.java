@@ -16,6 +16,7 @@ import com.acidmanic.consoletools.textualcontent.ContentModifier;
 import com.acidmanic.consoletools.textualcontent.ContentModifierManager;
 import com.acidmanic.consoletools.textualcontent.PadderContentModifier;
 import com.acidmanic.consoletools.textualcontent.RawStringContent;
+import com.acidmanic.consoletools.textualcontent.TextWrapperContentModifier;
 
 /**
  *
@@ -28,6 +29,7 @@ public class Cell implements Renderable,Paddable{
     
     
     private Padding padding;
+    private int maximumWidth;
     
     public Cell() {
         this("");
@@ -37,12 +39,13 @@ public class Cell implements Renderable,Paddable{
         this.content = content;
         this.padding = new Padding(0);
         this.modifierManager = new ContentModifierManager();
+        this.maximumWidth=-1;
     }
     
     
     @Override
     public Size measure() {
-        return new Measurer().getSize(content,padding);
+        return new Measurer().getSize(exposeContent());
     }
 
     @Override
@@ -74,6 +77,19 @@ public class Cell implements Renderable,Paddable{
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getMaximumWidth() {
+        return maximumWidth;
+    }
+
+    public void setMaximumWidth(int maximumWidth) {
+        this.maximumWidth = maximumWidth;
+        if(maximumWidth>0){
+            this.modifierManager.setModifier(new TextWrapperContentModifier(maximumWidth, null));
+        }else{
+            this.modifierManager.removeModifier(TextWrapperContentModifier.class);
+        }
     }
     
     
