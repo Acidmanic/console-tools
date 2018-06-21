@@ -42,6 +42,10 @@ public class ContentModifierManager {
         }
     }
 
+    public void removeModifier(Class type){
+        removeModifierIfExists(type.getName());
+    }
+    
     public Content applyAll(Content content) {
         for(ContentModifier modifier:this.modifiers){
             modifier.setInnerContent(content);
