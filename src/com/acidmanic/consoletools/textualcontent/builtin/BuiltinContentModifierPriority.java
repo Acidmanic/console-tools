@@ -21,6 +21,7 @@ public class BuiltinContentModifierPriority implements ContentModifierPriority{
         this.priorities=new HashMap<>();
         
         setPriority(PadderContentModifier.class);
+        setPriority(HorizontalAlignerContentModifier.class);
         setPriority(TextWrapperContentModifier.class);
         setPriority(RawStringContent.class);
     }
