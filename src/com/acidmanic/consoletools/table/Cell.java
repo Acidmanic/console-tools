@@ -5,15 +5,15 @@
  */
 package com.acidmanic.consoletools.table;
 
+import com.acidmanic.consoletools.drawing.HorizontalAlignment;
 import com.acidmanic.consoletools.drawing.Padding;
-import com.acidmanic.consoletools.drawing.ascii.StringPadder;
 import com.acidmanic.consoletools.drawing.ascii.Measurer;
 import com.acidmanic.consoletools.drawing.ascii.Paddable;
 import com.acidmanic.consoletools.rendering.Renderable;
 import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.rendering.RenderingContext;
-import com.acidmanic.consoletools.textualcontent.ContentModifier;
 import com.acidmanic.consoletools.textualcontent.ContentModifierManager;
+import com.acidmanic.consoletools.textualcontent.builtin.HorizontalAlignerContentModifier;
 import com.acidmanic.consoletools.textualcontent.builtin.PadderContentModifier;
 import com.acidmanic.consoletools.textualcontent.builtin.RawStringContent;
 import com.acidmanic.consoletools.textualcontent.builtin.TextWrapperContentModifier;
@@ -30,6 +30,7 @@ public class Cell implements Renderable,Paddable{
     
     private Padding padding;
     private int maximumWidth;
+    private HorizontalAlignment horizontalAlignment;
     
     public Cell() {
         this("");
@@ -91,6 +92,17 @@ public class Cell implements Renderable,Paddable{
             this.modifierManager.removeModifier(TextWrapperContentModifier.class);
         }
     }
+
+    public HorizontalAlignment getHorizontalAlignment() {
+        return horizontalAlignment;
+    }
+
+    public void setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
+        this.horizontalAlignment = horizontalAlignment;
+        this.modifierManager.setModifier(new HorizontalAlignerContentModifier(horizontalAlignment, null));
+    }
+    
+    
     
     
 }
