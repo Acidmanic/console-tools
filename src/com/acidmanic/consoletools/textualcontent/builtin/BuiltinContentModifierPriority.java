@@ -21,7 +21,6 @@ public class BuiltinContentModifierPriority implements ContentModifierPriority{
         this.priorities=new HashMap<>();
         
         setPriority(PadderContentModifier.class);
-        setPriority(HorizontalAlignerContentModifier.class);
         setPriority(TextWrapperContentModifier.class);
         setPriority(RawStringContent.class);
     }
@@ -40,7 +39,7 @@ public class BuiltinContentModifierPriority implements ContentModifierPriority{
     @Override
     public boolean compare(ContentModifier wraps, ContentModifier isBeeingWrapped) {
         return getPriority(isBeeingWrapped.getClass()) 
-                <
+                >
                 getPriority(wraps.getClass());
     }
     

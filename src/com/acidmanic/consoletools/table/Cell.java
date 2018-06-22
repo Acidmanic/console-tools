@@ -13,7 +13,6 @@ import com.acidmanic.consoletools.rendering.Renderable;
 import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.rendering.RenderingContext;
 import com.acidmanic.consoletools.textualcontent.ContentModifierManager;
-import com.acidmanic.consoletools.textualcontent.builtin.HorizontalAlignerContentModifier;
 import com.acidmanic.consoletools.textualcontent.builtin.PadderContentModifier;
 import com.acidmanic.consoletools.textualcontent.builtin.RawStringContent;
 import com.acidmanic.consoletools.textualcontent.builtin.TextWrapperContentModifier;
@@ -30,7 +29,6 @@ public class Cell implements Renderable,Paddable{
     
     private Padding padding;
     private int maximumWidth;
-    private HorizontalAlignment horizontalAlignment;
     
     public Cell() {
         this("");
@@ -93,16 +91,5 @@ public class Cell implements Renderable,Paddable{
         }
     }
 
-    public HorizontalAlignment getHorizontalAlignment() {
-        return horizontalAlignment;
-    }
-
-    public void setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
-        this.horizontalAlignment = horizontalAlignment;
-        this.modifierManager.setModifier(new HorizontalAlignerContentModifier(horizontalAlignment, null));
-    }
-    
-    
-    
     
 }
