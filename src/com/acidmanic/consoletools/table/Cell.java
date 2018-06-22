@@ -14,9 +14,9 @@ import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.rendering.RenderingContext;
 import com.acidmanic.consoletools.textualcontent.ContentModifier;
 import com.acidmanic.consoletools.textualcontent.ContentModifierManager;
-import com.acidmanic.consoletools.textualcontent.PadderContentModifier;
-import com.acidmanic.consoletools.textualcontent.RawStringContent;
-import com.acidmanic.consoletools.textualcontent.TextWrapperContentModifier;
+import com.acidmanic.consoletools.textualcontent.builtin.PadderContentModifier;
+import com.acidmanic.consoletools.textualcontent.builtin.RawStringContent;
+import com.acidmanic.consoletools.textualcontent.builtin.TextWrapperContentModifier;
 
 /**
  *

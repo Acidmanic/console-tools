@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acidmanic.consoletools.textualcontent;
+package com.acidmanic.consoletools.textualcontent.builtin;
 
 import com.acidmanic.consoletools.drawing.Padding;
 import com.acidmanic.consoletools.drawing.ascii.StringPadder;
+import com.acidmanic.consoletools.textualcontent.Content;
+import com.acidmanic.consoletools.textualcontent.ContentModifier;
 
 /**
  *

@@ -7,9 +7,6 @@ package com.acidmanic.consoletools.textualcontent.builtin;
 
 import com.acidmanic.consoletools.textualcontent.ContentModifier;
 import com.acidmanic.consoletools.textualcontent.ContentModifierPriority;
-import com.acidmanic.consoletools.textualcontent.PadderContentModifier;
-import com.acidmanic.consoletools.textualcontent.RawStringContent;
-import com.acidmanic.consoletools.textualcontent.TextWrapperContentModifier;
 import java.util.HashMap;
 
 /**
