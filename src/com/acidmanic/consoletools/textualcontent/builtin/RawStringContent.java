@@ -25,7 +25,7 @@ public class RawStringContent implements Content {
 
     @Override
     public String getContent() {
-        return this.content;
+        return this.content.replaceAll("\\t", "    ");
     }
 
 }
