@@ -23,7 +23,7 @@ public class StringPlaygrounds {
         String[] aEach = ("This should be formatted correctly.\n"
                 + "\tline One.\n"
                 + "\tline two.\n"
-                + "and description after two lines").split(String.format(WITH_DELIMITER, "\\n"));
+                + "and description after two lines").split(String.format(WITH_DELIMITER, "\\s"));
         for(String ech:aEach){
             System.out.print(ech);
         }
