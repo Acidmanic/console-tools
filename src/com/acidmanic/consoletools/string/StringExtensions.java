@@ -15,7 +15,19 @@ public class StringExtensions {
     private static final String WITH_DELIMITER = "((?<=%1$s)|(?=%1$s))";
     
     public static String[] splitPreserving(String main,String delimiterRegEx){
-        return main.split(String.format(WITH_DELIMITER, "\\n"));
+        return main.split(String.format(WITH_DELIMITER, delimiterRegEx));
         
+    }
+    
+    public static String getStarterWhiteSpace(String value){
+        StringBuilder sb = new StringBuilder();
+        for(char ch:value.toCharArray()){
+            if(Character.isWhitespace(ch)){
+                sb.append(ch);
+            }else{
+                return sb.toString();
+            }
+        }
+        return "";
     }
 }
