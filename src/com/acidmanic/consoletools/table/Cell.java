@@ -5,7 +5,6 @@
  */
 package com.acidmanic.consoletools.table;
 
-import com.acidmanic.consoletools.drawing.HorizontalAlignment;
 import com.acidmanic.consoletools.drawing.Padding;
 import com.acidmanic.consoletools.drawing.ascii.Measurer;
 import com.acidmanic.consoletools.drawing.ascii.Paddable;
