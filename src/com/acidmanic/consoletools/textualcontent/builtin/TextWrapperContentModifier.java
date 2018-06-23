@@ -5,6 +5,7 @@
  */
 package com.acidmanic.consoletools.textualcontent.builtin;
 
+import com.acidmanic.consoletools.string.StringExtensions;
 import com.acidmanic.consoletools.textualcontent.Content;
 import com.acidmanic.consoletools.textualcontent.ContentModifier;
 
@@ -30,31 +31,32 @@ public class TextWrapperContentModifier extends ContentModifier {
         for (String line : lines) {
             line = wrapIfNeeded(line);
             sb.append(sep).append(line);
-            sep="\n";
+            sep = "\n";
         }
         return sb.toString();
     }
 
+    private String devide(String part, StringBuilder sb) {
+        while (part.length() > this.maximumWidth) {
+            String starter = part.substring(0, this.maximumWidth);
+            part = part.substring(this.maximumWidth, part.length());
+            sb.append(starter).append("\n");
+        }
+        return part;
+    }
+
     private String wrapIfNeeded(String line) {
         StringBuilder ret = new StringBuilder();
-        String[] words = line.split("\\s");
+        String[] parts = StringExtensions.splitPreserving(line, "(\\s|\\.|;|,|-)");
         int width = 0;
-        String sep = "";
-        for (String word : words) {
-            if (width + word.length() >= this.maximumWidth) {
-                while (word.length() > this.maximumWidth) {
-                    String starter = word.substring(0, this.maximumWidth);
-                    word = word.substring(this.maximumWidth, word.length());
-                    ret.append(sep).append(starter);
-                }
+        for (String part : parts) {
+            if (width + part.length() > this.maximumWidth) {
                 width = 0;
                 ret.append("\n");
             }
-            if (!word.isEmpty()) {
-                ret.append(sep).append(word);
-                width += word.length();
-                sep = " ";
-            }
+            part=devide(part, ret);
+            ret.append(part);
+            width += part.length();
         }
         return ret.toString();
     }
