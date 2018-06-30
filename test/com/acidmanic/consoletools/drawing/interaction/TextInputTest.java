@@ -20,8 +20,18 @@ public class TextInputTest {
     @Test
     public void testAskInput() {
         System.out.println("askInput");
-        TextInput instance = new TextInput("Default","Please just hit Enter");
+        TextInput instance = new TextInput("Please just hit Enter","Default");
         String expResult = "Default";
+        String result = instance.askInput();
+        assertEquals(expResult, result);
+    }
+    
+    
+    @Test
+    public void testAskInputNull() {
+        System.out.println("askInput");
+        TextInput instance = new TextInput("Please just hit Enter");
+        String expResult = "";
         String result = instance.askInput();
         assertEquals(expResult, result);
     }

@@ -15,7 +15,7 @@ public abstract class Input<T> {
     protected T value;
     private String label;
 
-    public Input(String label,T value) {
+    public Input(String label, T value) {
         this.value = value;
         this.label = label;
     }
@@ -38,6 +38,9 @@ public abstract class Input<T> {
     }
 
     protected String getStringForValue() {
+        if (this.value == null) {
+            return "";
+        }
         return value.toString();
     }
 
@@ -57,32 +60,30 @@ public abstract class Input<T> {
         this.value = value;
     }
 
-    
-    protected int tryReadChar(){
+    protected int tryReadChar() {
         try {
             return System.in.read();
         } catch (Exception e) {
         }
         return -1;
     }
-    
-    protected String readLine(){
+
+    protected String readLine() {
         int ch;
         StringBuilder sb = new StringBuilder();
-        while ((ch=tryReadChar())!=-1 && ch!='\n'){
-            sb.append((char)ch);
+        while ((ch = tryReadChar()) != -1 && ch != '\n') {
+            sb.append((char) ch);
         }
         return sb.toString();
     }
-    
-    protected String getStringInputOrDefault(){
+
+    protected String getStringInputOrDefault() {
         String res = readLine();
-        if (res==null||res.isEmpty()){
+        if (res == null || res.isEmpty()) {
             return getStringForValue();
         }
         return res;
     }
-    
-    
+
     public abstract T askInput();
 }
