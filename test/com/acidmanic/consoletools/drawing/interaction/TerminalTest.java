@@ -13,15 +13,15 @@ import static org.junit.Assert.*;
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public class TerminalControlEscapeSequencesTest {
+public class TerminalTest {
     
-    public TerminalControlEscapeSequencesTest() {
+    public TerminalTest() {
     }
 
     @Test
     public void testQueryCursorPosition() {
         System.out.println("queryCursorPosition");
-        TerminalControlEscapeSequences instance = new TerminalControlEscapeSequences();
+        Terminal instance = new Terminal();
         Size expResult = new Size();
         Size result = instance.queryCursorPosition();
         assertEquals(expResult.getColumns(), result.getColumns());

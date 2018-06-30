@@ -11,7 +11,7 @@ import com.acidmanic.consoletools.drawing.Size;
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public class TerminalControlEscapeSequences {
+public class Terminal {
 
     public static char ESCAPE = 0x1B;
     private static final String ESCAPE_S = String.format("%s", ESCAPE);
@@ -36,4 +36,7 @@ public class TerminalControlEscapeSequences {
         }
         return new Size();
     }
+    
+    
+    
 }
