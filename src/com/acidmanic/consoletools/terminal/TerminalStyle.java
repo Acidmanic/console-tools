@@ -31,6 +31,13 @@ public class TerminalStyle {
         this.alternativeFontUsing = false;
     }
 
+    public TerminalStyle(int foregroundColor) {
+        this();
+        this.foregroundColor = foregroundColor;
+    }
+
+    
+    
     public TerminalStyle(int foreground, int background) {
         this();
         this.foregroundColor = foreground;
