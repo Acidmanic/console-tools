@@ -12,6 +12,21 @@ package com.acidmanic.consoletools.drawing.interaction;
  */
 public class TextInput extends Input<String> {
 
+    public TextInput(String label, String value) {
+        super(label, value);
+    }
+
+    
+
+    public TextInput(String label) {
+        super(label);
+    }
+
+    public TextInput() {
+    }
+
+    
+    
     @Override
     public String askInput() {
         printLabel();
