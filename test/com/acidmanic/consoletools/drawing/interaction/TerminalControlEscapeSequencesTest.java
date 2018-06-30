@@ -5,6 +5,7 @@
  */
 package com.acidmanic.consoletools.drawing.interaction;
 
+import com.acidmanic.consoletools.drawing.Size;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,8 +19,16 @@ public class TerminalControlEscapeSequencesTest {
     }
 
     @Test
-    public void testSomeMethod() {
-        fail("The test case is a prototype.");
+    public void testQueryCursorPosition() {
+        System.out.println("queryCursorPosition");
+        TerminalControlEscapeSequences instance = new TerminalControlEscapeSequences();
+        Size expResult = new Size();
+        Size result = instance.queryCursorPosition();
+        assertEquals(expResult.getColumns(), result.getColumns());
+        assertEquals(expResult.getLines(), result.getLines());
     }
+
+
+    
     
 }
