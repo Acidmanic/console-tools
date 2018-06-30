@@ -8,6 +8,7 @@ package com.acidmanic.consoletools.drawing.interaction;
 import com.acidmanic.consoletools.drawing.Size;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static com.acidmanic.consoletools.drawing.interaction.TerminalControlEscapeSequences.*;
 
 /**
  *
@@ -26,6 +27,24 @@ public class TerminalTest {
         Size result = instance.queryCursorPosition();
         assertEquals(expResult.getColumns(), result.getColumns());
         assertEquals(expResult.getLines(), result.getLines());
+    }
+
+    
+    @Test
+    public void testSetScreenAttributes_TerminalStyle() {
+        System.out.println("setScreenAttributes");
+        Terminal instance = new Terminal();
+        instance.setScreenAttributes(TerminalStyles.Error);
+        System.out.println("Sample text for error style.");
+        instance.setScreenAttributes(TerminalStyles.BIOS);
+        System.out.println("Sample text for Bios style.");
+        
+        instance.setScreenAttributes(TerminalStyles.Matrix);
+        System.out.println("Sample text for MATRIX style.");
+        
+        instance.setScreenAttributes(TerminalStyles.UglyMac);
+        System.out.println("Sample text for UglyMac style.");
+        assertTrue(true);
     }
 
 
