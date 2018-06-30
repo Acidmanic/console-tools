@@ -17,4 +17,5 @@ public class TerminalStyles {
     public static final TerminalStyle Error = new TerminalStyle(FOREGROUND_RED, BACKGROUND_BLACK);
     public static final TerminalStyle BIOS = new TerminalStyle(FOREGROUND_WHITE, BACKGROUND_BLACK);
     public static final TerminalStyle UglyMac = new TerminalStyle(FOREGROUND_BLACK, BACKGROUND_WHITE);
+    public static final TerminalStyle BlueInput = new TerminalStyle(FOREGROUND_BLUE, BACKGROUND_WHITE);
 }

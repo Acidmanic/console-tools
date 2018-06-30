@@ -7,9 +7,6 @@ package com.acidmanic.consoletools.terminal;
 
 import com.acidmanic.consoletools.drawing.Size;
 import static com.acidmanic.consoletools.terminal.TerminalControlEscapeSequences.*;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
