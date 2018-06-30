@@ -17,7 +17,7 @@ public class Terminal {
     private static final String ESCAPE_S = String.format("%s", TerminalControlEscapeSequences.ESCAPE);
 
     public Size queryCursorPosition() {
-        String command = String.format("%s[6n", TerminalControlEscapeSequences.ESCAPE);
+        String command = new TerminalCommandBuilder().queryCursorPosition();
         try {
             System.out.write(command.getBytes());
             if (System.console() != null) {
@@ -37,20 +37,25 @@ public class Terminal {
         return new Size();
     }
 
+    
+
     public void setScreenAttributes(int foreground, int background) {
-        String command = String.format("%s[%d;%dm", ESCAPE, foreground, background);
+        String command = new TerminalCommandBuilder().setScreenColors(foreground, background);
         executeOnTerminal(command);
     }
+
+    
     
     public void setScreenAttributes(TerminalStyle style){
-        String command = createAttributesCommand(style);
+        String command = new TerminalCommandBuilder().createAttributesCommand(style);
         executeOnTerminal(command);
     }
 
     public void resetScreenAttributes(){
-        String command = String.format("%s[%dm", ESCAPE, ATTR_RESET_ALL);
+        String command = new TerminalCommandBuilder().resetScreenAttributes();
         executeOnTerminal(command);
     }
+
     
     private void executeOnTerminal(String command) {
         try {
@@ -59,22 +64,7 @@ public class Terminal {
         }
     }
 
-    private String createAttributesCommand(TerminalStyle style) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(ESCAPE).append("[");
-        String sep = "";
-        for (int att : style.getAll()) {
-            sb.append(sep).append(att);
-            sep = ";";
-        }
-        sb.append("m");
-        return sb.toString();
-    }
+    
 
-    private String createFontCommand(TerminalStyle style) {
-        String command = String.format("%s", ESCAPE);
-        command += style.isAlternativeFontUsing()? FONT_MAIN:FONT_ALTERNATIVE;
-        return command;
-    }
 
 }
