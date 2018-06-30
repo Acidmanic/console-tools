@@ -50,6 +50,11 @@ public class Terminal {
         executeOnTerminal(command);
     }
 
+    public void resetScreenAttributes(){
+        String command = String.format("%s[%dm", ESCAPE, ATTR_RESET_ALL);
+        executeOnTerminal(command);
+    }
+    
     private void executeOnTerminal(String command) {
         try {
             System.out.write(command.getBytes());
