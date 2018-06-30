@@ -42,7 +42,8 @@ public class TerminalControlEscapeSequences {
     public static final int BACKGROUND_WHITE = 47;
     
     
-    
+    public static final String FONT_ALTERNATIVE = ")";
+    public static final String FONT_MAIN = "(";
     
 
     

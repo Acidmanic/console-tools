@@ -7,6 +7,7 @@ package com.acidmanic.consoletools.drawing.interaction;
 
 import java.util.ArrayList;
 import java.util.List;
+import static com.acidmanic.consoletools.drawing.interaction.TerminalControlEscapeSequences.*;
 
 /**
  *
@@ -14,19 +15,24 @@ import java.util.List;
  */
 public class TerminalStyle {
 
-    private int foregroundColor = TerminalControlEscapeSequences.FOREGROUND_WHITE;
-    private int backgroundColor = TerminalControlEscapeSequences.BACKGROUND_BLACK;
+    private int foregroundColor = FOREGROUND_WHITE;
+    private int backgroundColor = BACKGROUND_BLACK;
+    private int brightness ;
     private final List<Integer> properties;
+    private boolean alternativeFontUsing;
 
     public TerminalStyle() {
         this.properties = new ArrayList<>();
         this.properties.add(TerminalControlEscapeSequences.ATTR_RESET_ALL);
+        this.brightness = ATTR_BRIGHT;
+        this.alternativeFontUsing = false;
     }
 
     public TerminalStyle(int foreground, int background) {
         this();
         this.foregroundColor = foreground;
         this.backgroundColor = background;
+        
     }
 
     public int getForegroundColor() {
@@ -48,12 +54,34 @@ public class TerminalStyle {
     public void addAttributes(int attribute) {
         this.properties.add(attribute);
     }
-    
-    public List<Integer> getAll(){
+
+    public List<Integer> getAll() {
         ArrayList<Integer> ret = new ArrayList<>(this.properties);
         ret.add(foregroundColor);
         ret.add(backgroundColor);
+        ret.add(this.brightness);
         return ret;
     }
+
+    public int getBrightness() {
+        return brightness;
+    }
+
+    public void setBrightness(int brightness) {
+        if (brightness == ATTR_BRIGHT || brightness == ATTR_DIM) {
+            this.brightness = brightness;
+
+        }
+    }
+
+    public boolean isAlternativeFontUsing() {
+        return alternativeFontUsing;
+    }
+
+    public void setAlternativeFontUsing(boolean alternativeFontUsing) {
+        this.alternativeFontUsing = alternativeFontUsing;
+    }
+    
+    
 
 }

@@ -46,7 +46,7 @@ public class Terminal {
     }
     
     public void setScreenAttributes(TerminalStyle style){
-        String command = createCommand(style);
+        String command = createAttributesCommand(style);
         executeOnTerminal(command);
     }
 
@@ -57,7 +57,7 @@ public class Terminal {
         }
     }
 
-    private String createCommand(TerminalStyle style) {
+    private String createAttributesCommand(TerminalStyle style) {
         StringBuilder sb = new StringBuilder();
         sb.append(ESCAPE).append("[");
         String sep = "";
@@ -67,6 +67,12 @@ public class Terminal {
         }
         sb.append("m");
         return sb.toString();
+    }
+
+    private String createFontCommand(TerminalStyle style) {
+        String command = String.format("%s", ESCAPE);
+        command += style.isAlternativeFontUsing()? FONT_MAIN:FONT_ALTERNATIVE;
+        return command;
     }
 
 }

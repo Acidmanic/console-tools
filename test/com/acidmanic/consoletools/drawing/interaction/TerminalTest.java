@@ -44,6 +44,12 @@ public class TerminalTest {
         
         instance.setScreenAttributes(TerminalStyles.UglyMac);
         System.out.println("Sample text for UglyMac style.");
+        
+        TerminalStyle matrix = TerminalStyles.Matrix;
+        matrix.setAlternativeFontUsing(true);
+        instance.setScreenAttributes(matrix);
+        System.out.println("Sample text for ALT MATRIX style.");
+        
         assertTrue(true);
     }
 
