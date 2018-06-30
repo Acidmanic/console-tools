@@ -47,6 +47,7 @@ public class TerminalTest {
         
         TerminalStyle matrix = TerminalStyles.Matrix;
         matrix.setAlternativeFontUsing(true);
+        matrix.setBrightness(BRIGHTNESS_DIM);
         instance.setScreenAttributes(matrix);
         System.out.println("Sample text for ALT MATRIX style.");
         

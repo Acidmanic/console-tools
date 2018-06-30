@@ -24,7 +24,7 @@ public class TerminalStyle {
     public TerminalStyle() {
         this.properties = new ArrayList<>();
         this.properties.add(TerminalControlEscapeSequences.ATTR_RESET_ALL);
-        this.brightness = ATTR_BRIGHT;
+        this.brightness = BRIGHTNESS_BRIGHT;
         this.alternativeFontUsing = false;
     }
 
@@ -68,7 +68,7 @@ public class TerminalStyle {
     }
 
     public void setBrightness(int brightness) {
-        if (brightness == ATTR_BRIGHT || brightness == ATTR_DIM) {
+        if (brightness == BRIGHTNESS_BRIGHT || brightness == BRIGHTNESS_DIM) {
             this.brightness = brightness;
 
         }

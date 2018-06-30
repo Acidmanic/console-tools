@@ -14,12 +14,15 @@ public class TerminalControlEscapeSequences {
     public static final char ESCAPE = 0x1B;
    
     public static final int ATTR_RESET_ALL = 0;
-    public static final int ATTR_BRIGHT = 1;
-    public static final int ATTR_DIM = 2;
+    
     public static final int ATTR_UNDERSCORE = 4;
     public static final int ATTR_BLINK = 5;
     public static final int ATTR_REVERSE = 7;
     public static final int ATTR_HIDDEN = 8;
+    
+    
+    public static final int BRIGHTNESS_BRIGHT = 1;
+    public static final int BRIGHTNESS_DIM = 2;
     
     
     public static final int FOREGROUND_BLACK = 30;
