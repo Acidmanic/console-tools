@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acidmanic.consoletools.drawing.interaction;
+package com.acidmanic.consoletools.terminal;
 
 import java.util.ArrayList;
 import java.util.List;
-import static com.acidmanic.consoletools.drawing.interaction.TerminalControlEscapeSequences.*;
+import static com.acidmanic.consoletools.terminal.TerminalControlEscapeSequences.*;
 
 /**
  *
