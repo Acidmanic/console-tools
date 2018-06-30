@@ -15,16 +15,19 @@ import static com.acidmanic.consoletools.terminal.TerminalControlEscapeSequences
  */
 public class TerminalStyle {
 
-    private int foregroundColor = FOREGROUND_WHITE;
-    private int backgroundColor = BACKGROUND_BLACK;
-    private int brightness ;
+    public static final int VALUE_UNSET = -1;
+    private int foregroundColor;
+    private int backgroundColor;
+    private int brightness;
     private final List<Integer> properties;
     private boolean alternativeFontUsing;
 
     public TerminalStyle() {
         this.properties = new ArrayList<>();
         this.properties.add(TerminalControlEscapeSequences.ATTR_RESET_ALL);
-        this.brightness = BRIGHTNESS_BRIGHT;
+        this.brightness = VALUE_UNSET;
+        this.foregroundColor = VALUE_UNSET;
+        this.backgroundColor = VALUE_UNSET;
         this.alternativeFontUsing = false;
     }
 
@@ -32,9 +35,17 @@ public class TerminalStyle {
         this();
         this.foregroundColor = foreground;
         this.backgroundColor = background;
-        
+
     }
 
+    public TerminalStyle(int foregroundColor, int backgroundColor, int brightness) {
+        this();
+        this.foregroundColor = foregroundColor;
+        this.backgroundColor = backgroundColor;
+        this.brightness = brightness;
+    }
+
+    
     public int getForegroundColor() {
         return foregroundColor;
     }
@@ -57,12 +68,19 @@ public class TerminalStyle {
 
     public List<Integer> getAll() {
         ArrayList<Integer> ret = new ArrayList<>(this.properties);
-        ret.add(foregroundColor);
-        ret.add(backgroundColor);
-        ret.add(this.brightness);
+        addIfSet(ret,this.backgroundColor);
+        addIfSet(ret,this.foregroundColor);
+        addIfSet(ret,this.brightness);
         return ret;
     }
 
+    private void addIfSet(ArrayList<Integer> ret,int value) {
+        if (value != VALUE_UNSET) {
+            ret.add(value);
+        }
+    }
+
+        
     public int getBrightness() {
         return brightness;
     }
@@ -81,7 +99,15 @@ public class TerminalStyle {
     public void setAlternativeFontUsing(boolean alternativeFontUsing) {
         this.alternativeFontUsing = alternativeFontUsing;
     }
-    
-    
 
+    
+    public void unsetForeground(){
+        this.foregroundColor=VALUE_UNSET;
+    }
+    public void unsetBackground(){
+        this.backgroundColor=VALUE_UNSET;
+    }
+    public void unsetBrightness(){
+        this.brightness=VALUE_UNSET;
+    }
 }
