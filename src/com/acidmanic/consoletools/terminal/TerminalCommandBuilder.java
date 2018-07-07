@@ -17,19 +17,18 @@ public class TerminalCommandBuilder {
         String command = String.format("%s[6n", TerminalControlEscapeSequences.ESCAPE);
         return command;
     }
-    
+
     public String setScreenColors(int foreground, int background) {
         String command = String.format("%s[%d;%dm", ESCAPE, foreground, background);
         return command;
     }
-    
-    
-    public String setScreenColors(int foreground, int background,int brightness) {
-        String command = String.format("%s[%d;%d;%dm", 
-                ESCAPE, foreground, background,brightness);
+
+    public String setScreenColors(int foreground, int background, int brightness) {
+        String command = String.format("%s[%d;%d;%dm",
+                ESCAPE, foreground, background, brightness);
         return command;
     }
-    
+
     public String createAttributesCommand(TerminalStyle style) {
         StringBuilder sb = new StringBuilder();
         sb.append(ESCAPE).append("[");
@@ -51,5 +50,21 @@ public class TerminalCommandBuilder {
         String command = String.format("%s", ESCAPE);
         command += style.isAlternativeFontUsing() ? TerminalControlEscapeSequences.FONT_MAIN : TerminalControlEscapeSequences.FONT_ALTERNATIVE;
         return command;
+    }
+
+    public String moveCursorUp(int rows) {
+        return String.format("%s[%dA", ESCAPE, rows);
+    }
+    
+    public String moveCursorDown(int rows) {
+        return String.format("%s[%dB", ESCAPE, rows);
+    }
+
+    public String moveCursorRight(int columns) {
+        return String.format("%s[%dC", ESCAPE, columns);
+    }
+    
+    public String moveCursorLeft(int columns) {
+        return String.format("%s[%dD", ESCAPE, columns);
     }
 }
