@@ -39,8 +39,8 @@ public class BufferedStringRenderingContext extends RenderingContextBase<String,
     }
 
     @Override
-    public void put(String string) {
-        String[] lines = string.split("\\n");
+    public void put(String content) {
+        String[] lines = content.split("\\n");
         for (int l = 0; l < lines.length; l++) {
             int lineNumber = l + currentPosition.getLines();
             if (currentClip.containsLine(lineNumber)) {
