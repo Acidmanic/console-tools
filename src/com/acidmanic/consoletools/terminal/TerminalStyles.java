@@ -17,6 +17,8 @@ public class TerminalStyles {
     public static final TerminalStyle Matrix
             = new TerminalStyle(FOREGROUND_GREEN, BACKGROUND_BLACK, BRIGHTNESS_BRIGHT);
     public static final TerminalStyle Error = new TerminalStyle(FOREGROUND_RED);
+    public static final TerminalStyle Warning 
+            = new TerminalStyle(FOREGROUND_YELLOW,TerminalStyle.VALUE_UNSET,BRIGHTNESS_DIM);
     public static final TerminalStyle BIOS
             = new TerminalStyle(FOREGROUND_WHITE, BACKGROUND_BLACK, BRIGHTNESS_BRIGHT);
     public static final TerminalStyle UglyMac

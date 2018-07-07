@@ -32,6 +32,9 @@ public class TerminalBackwardTest {
         System.out.println(new TerminalCommandBuilder().moveCursorUp(2));
         terminal.setScreenAttributes(TerminalStyles.Matrix);
         System.out.println("DIIEEE");
+        terminal.setScreenAttributes(TerminalStyles.Warning);
+        System.out.println("This is a warning.");
+        terminal.resetScreenAttributes();
     }
     
 }
