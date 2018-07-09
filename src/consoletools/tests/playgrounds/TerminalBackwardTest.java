@@ -7,7 +7,6 @@ package consoletools.tests.playgrounds;
 
 import com.acidmanic.consoletools.terminal.Terminal;
 import com.acidmanic.consoletools.terminal.TerminalCommandBuilder;
-import com.acidmanic.consoletools.terminal.TerminalStyle;
 import com.acidmanic.consoletools.terminal.TerminalStyles;
 
 /**
@@ -29,10 +28,11 @@ public class TerminalBackwardTest {
         System.out.println("TTTTTTTTTTTTTTTTIIIIIIIIIIIISSSSSSSSSSISSSS");
         
         Terminal terminal = new Terminal();
-        System.out.println(new TerminalCommandBuilder().moveCursorUp(2));
+        System.out.println(new TerminalCommandBuilder().moveCursorUp(3));
         terminal.setScreenAttributes(TerminalStyles.Matrix);
         System.out.println("DIIEEE");
         terminal.setScreenAttributes(TerminalStyles.Warning);
+        System.out.println(new TerminalCommandBuilder().moveCursorDown(3));
         System.out.println("This is a warning.");
         terminal.resetScreenAttributes();
     }
