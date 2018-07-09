@@ -6,6 +6,7 @@
 package com.acidmanic.consoletools.drawing.interaction;
 
 import com.acidmanic.consoletools.drawing.Size;
+import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
 import com.acidmanic.consoletools.drawing.ascii.AsciiBorders;
 import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
 import com.acidmanic.consoletools.rendering.Renderable;
@@ -15,6 +16,7 @@ import com.acidmanic.consoletools.table.Cell;
 import com.acidmanic.consoletools.table.Row;
 import com.acidmanic.consoletools.table.Table;
 import com.acidmanic.consoletools.terminal.Terminal;
+import com.acidmanic.consoletools.terminal.TerminalStyle;
 import com.acidmanic.consoletools.terminal.TerminalStyles;
 
 /**
@@ -24,6 +26,26 @@ import com.acidmanic.consoletools.terminal.TerminalStyles;
 public class InputTextBox extends Input<String> {
 
     private int width = 100;
+    private TerminalStyle intputStyle = TerminalStyles.BlueInput;
+    private TerminalStyle style = TerminalStyles.Matrix;
+    private AsciiBorder tableBorder = AsciiBorders.BOLD;
+    private AsciiBorder innerBorders = AsciiBorders.SOLID;
+
+    public TerminalStyle getIntputStyle() {
+        return intputStyle;
+    }
+
+    public void setIntputStyle(TerminalStyle intputStyle) {
+        this.intputStyle = intputStyle;
+    }
+
+    public TerminalStyle getStyle() {
+        return style;
+    }
+
+    public void setStyle(TerminalStyle style) {
+        this.style = style;
+    }
 
     public int getWidth() {
         return width;
@@ -44,6 +66,25 @@ public class InputTextBox extends Input<String> {
     public InputTextBox() {
     }
 
+    public AsciiBorder getTableBorder() {
+        return tableBorder;
+    }
+
+    public void setTableBorder(AsciiBorder tableBorder) {
+        this.tableBorder = tableBorder;
+    }
+
+    public AsciiBorder getInnerBorders() {
+        return innerBorders;
+    }
+
+    public void setInnerBorders(AsciiBorder innerBorders) {
+        this.innerBorders = innerBorders;
+    }
+
+    
+    
+    
     @Override
     public String askInput() {
         Table table = new Table();
@@ -53,13 +94,13 @@ public class InputTextBox extends Input<String> {
         table.getRows().add(new Row());
         table.getRows().add(new Row());
 
-        table.getRows().get(0).getCells().add(new Bordered(labelCell));
+        table.getRows().get(0).getCells().add(new Bordered(labelCell, this.innerBorders));
 
         Cell valueCell = new Cell("");
 
-        table.getRows().get(1).getCells().add(new Bordered(valueCell));
+        table.getRows().get(1).getCells().add(new Bordered(valueCell, this.innerBorders));
 
-        Renderable borderedTable = new Bordered(table, AsciiBorders.SOLID);
+        Renderable borderedTable = new Bordered(table, this.tableBorder);
 
         Terminal terminal = new Terminal();
 
@@ -70,11 +111,11 @@ public class InputTextBox extends Input<String> {
         borderedTable.render(context);
         String tableString = context.represent();
         terminal.resetScreenAttributes();
-        terminal.setScreenAttributes(TerminalStyles.Matrix);
+        terminal.setScreenAttributes(this.getStyle());
         System.out.println(tableString);
         terminal.resetScreenAttributes();
         terminal.moveCursor(mirror(cursorMove));
-        terminal.setScreenAttributes(TerminalStyles.BlueInput);
+        terminal.setScreenAttributes(this.getIntputStyle());
         this.value = readLine();
         terminal.resetScreenAttributes();
         terminal.moveCursor(cursorMove);
