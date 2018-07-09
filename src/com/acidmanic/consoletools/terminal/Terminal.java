@@ -6,7 +6,6 @@
 package com.acidmanic.consoletools.terminal;
 
 import com.acidmanic.consoletools.drawing.Size;
-import static com.acidmanic.consoletools.terminal.TerminalControlEscapeSequences.*;
 
 /**
  *
@@ -64,7 +63,26 @@ public class Terminal {
         }
     }
 
-    
+    public void moveCursor(Size positionChange){
+        moveCursorVertically(positionChange.getLines());
+        moveCursorHorizontally(positionChange.getColumns());
+    }
+
+    private void moveCursorVertically(int lines) {
+        if (lines<0){
+            executeOnTerminal(new TerminalCommandBuilder().moveCursorUp(-lines));
+        }else{
+            executeOnTerminal(new TerminalCommandBuilder().moveCursorDown(lines));
+        }
+    }
+
+    private void moveCursorHorizontally(int columns) {
+        if (columns<0){
+            executeOnTerminal(new TerminalCommandBuilder().moveCursorLeft(-columns));
+        }else{
+            executeOnTerminal(new TerminalCommandBuilder().moveCursorRight(columns));
+        }
+    }
 
 
 }
