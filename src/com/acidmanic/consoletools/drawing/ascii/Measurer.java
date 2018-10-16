@@ -7,6 +7,8 @@ package com.acidmanic.consoletools.drawing.ascii;
 
 import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.drawing.Padding;
+import com.acidmanic.consoletools.string.StringExtensions;
+import javafx.beans.binding.StringExpression;
 
 /**
  *
@@ -18,7 +20,7 @@ public class Measurer {
     }
 
     public Size getSize(String content) {
-        String[] lines = content.split("\\n");
+        String[] lines = StringExtensions.split(content, "\n");
 
         int maxWidth = 0;
         for (String line : lines) {
