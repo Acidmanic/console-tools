@@ -29,7 +29,7 @@ public interface RenderingContext<Tin,Tout> {
     
     void closeObject();
     
-    void put(Tin string);
+    void put(Tin content);
 
     Tout represent();
 

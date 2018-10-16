@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package console.tools;
+package consoletools.tests.playgrounds;
 
 import com.acidmanic.consoletools.drawing.HorizontalAlignment;
 import com.acidmanic.consoletools.table.Cell;
