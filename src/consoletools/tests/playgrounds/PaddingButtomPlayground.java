@@ -23,19 +23,14 @@ public class PaddingButtomPlayground {
     public static void main(String[] args) {
         Table table = new Table();
 
-        Row row1 = new Row();
         Row row2 = new Row();
 
-        Cell cell1 = new Cell("CELL\nCONTENT");
         Cell cell2 = new Cell("CELL\nCONTENT");
 
-        row1.getCells().add(new Bordered(cell1,AsciiBorders.SOLID));
         row2.getCells().add(new Bordered(cell2,AsciiBorders.SOLID));
 
-        cell1.setPadding(new Padding(4, 0));
         cell2.setPadding(new Padding(4, 4, 4, 4));
 
-        table.getRows().add(row1);
         table.getRows().add(row2);
 
         System.out.println(table.render());
