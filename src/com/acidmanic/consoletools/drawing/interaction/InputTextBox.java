@@ -11,7 +11,7 @@ import com.acidmanic.consoletools.drawing.ascii.AsciiBorders;
 import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
 import com.acidmanic.consoletools.rendering.Renderable;
 import com.acidmanic.consoletools.rendering.RenderingContext;
-import com.acidmanic.consoletools.table.Bordered;
+import com.acidmanic.consoletools.rendering.decorators.Bordered;
 import com.acidmanic.consoletools.table.Cell;
 import com.acidmanic.consoletools.table.Row;
 import com.acidmanic.consoletools.table.Table;
