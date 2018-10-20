@@ -5,6 +5,9 @@
  */
 package com.acidmanic.consoletools.terminal;
 
+import com.acidmanic.consoletools.terminal.styling.TerminalControlEscapeSequences;
+import com.acidmanic.consoletools.terminal.styling.TerminalStyle;
+import com.acidmanic.consoletools.terminal.styling.TerminalCommandBuilder;
 import com.acidmanic.consoletools.drawing.Size;
 
 /**

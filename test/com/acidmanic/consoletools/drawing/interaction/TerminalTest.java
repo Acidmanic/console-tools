@@ -5,13 +5,13 @@
  */
 package com.acidmanic.consoletools.drawing.interaction;
 
-import com.acidmanic.consoletools.terminal.TerminalStyles;
+import com.acidmanic.consoletools.terminal.styling.TerminalStyles;
 import com.acidmanic.consoletools.terminal.Terminal;
-import com.acidmanic.consoletools.terminal.TerminalStyle;
+import com.acidmanic.consoletools.terminal.styling.TerminalStyle;
 import com.acidmanic.consoletools.drawing.Size;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static com.acidmanic.consoletools.terminal.TerminalControlEscapeSequences.*;
+import static com.acidmanic.consoletools.terminal.styling.TerminalControlEscapeSequences.*;
 
 /**
  *

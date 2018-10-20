@@ -16,8 +16,8 @@ import com.acidmanic.consoletools.table.Cell;
 import com.acidmanic.consoletools.table.Row;
 import com.acidmanic.consoletools.table.Table;
 import com.acidmanic.consoletools.terminal.Terminal;
-import com.acidmanic.consoletools.terminal.TerminalStyle;
-import com.acidmanic.consoletools.terminal.TerminalStyles;
+import com.acidmanic.consoletools.terminal.styling.TerminalStyle;
+import com.acidmanic.consoletools.terminal.styling.TerminalStyles;
 
 /**
  *

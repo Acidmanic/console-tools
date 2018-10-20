@@ -6,8 +6,8 @@
 package consoletools.tests.playgrounds;
 
 import com.acidmanic.consoletools.terminal.Terminal;
-import com.acidmanic.consoletools.terminal.TerminalCommandBuilder;
-import com.acidmanic.consoletools.terminal.TerminalStyles;
+import com.acidmanic.consoletools.terminal.styling.TerminalCommandBuilder;
+import com.acidmanic.consoletools.terminal.styling.TerminalStyles;
 
 /**
  *
