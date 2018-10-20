@@ -20,6 +20,9 @@ public class Terminal {
     private static final String ESCAPE_S = String.format("%s", TerminalControlEscapeSequences.ESCAPE);
     private final PrintStream out;
 
+    public final class Constants extends TerminalControlEscapeSequences{}
+    
+    
     public Terminal() {
         this.out = System.out;
     }
