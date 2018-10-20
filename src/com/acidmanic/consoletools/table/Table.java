@@ -6,83 +6,83 @@
 package com.acidmanic.consoletools.table;
 
 import com.acidmanic.consoletools.drawing.Padding;
-import com.acidmanic.consoletools.rendering.Renderable;
 import com.acidmanic.consoletools.drawing.Size;
+import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
 import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
-import com.acidmanic.consoletools.drawing.ascii.Paddable;
-import java.util.ArrayList;
-import java.util.List;
+import com.acidmanic.consoletools.rendering.Renderable;
 import com.acidmanic.consoletools.rendering.RenderingContext;
+import com.acidmanic.consoletools.rendering.decorators.Bordered;
+import java.util.ArrayList;
 
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public class Table implements Renderable {
+public class Table implements ITable<String> {
 
-    private final ArrayList<Row> rows;
+    private class StringTable extends TableBase<String> {
+
+        @Override
+        protected RenderingContext createContext() {
+            return new BufferedStringRenderingContext(this.measure());
+        }
+
+    }
+
+    private final ITable<String> wrappedTable;
+    private Renderable borderedTable = null;
 
     public Table() {
-        this.rows = new ArrayList<>();
+        this.wrappedTable = new StringTable();
     }
 
+    @Override
     public ArrayList<Row> getRows() {
-        return rows;
+        return this.wrappedTable.getRows();
     }
 
+    @Override
     public String render() {
-        BufferedStringRenderingContext context
-                = new BufferedStringRenderingContext(this.measure());
-        context.clear();
-        this.render(context);
-        return context.represent();
+        if (this.borderedTable == null) {
+            return this.wrappedTable.render();
+        } else {
+            BufferedStringRenderingContext context
+                    = new BufferedStringRenderingContext(this.measure());
+            this.borderedTable.render(context);
+            return context.represent();
+        }
     }
 
     @Override
     public void render(RenderingContext context) {
-        this.render(context, this.getRows());
-    }
-
-    private void render(RenderingContext context, List<Row> renderRows) {
-        TableSizeManager manager
-                = new TableSizeManager(renderRows);
-        for (Row row : renderRows) {
-            Integer columns = row.getCells().size();
-            int rowHeight = manager.getRowHeight(row);
-            for (int i = 0; i < columns; i++) {
-                Renderable cell = row.getCells().get(i);
-                renderCell(context, cell, manager.getMeasuredSizeForCell(row, i));
-                context.moveHorozontally(manager.getColumnWidthForCell(row, i));
-            }
-            context.resetHorizontally();
-            context.moveVertically(rowHeight);
+        if (this.borderedTable == null) {
+            this.wrappedTable.render(context);
+        } else {
+            this.wrappedTable.render(context);
         }
-    }
-
-    private void renderCell(RenderingContext context, Renderable cell, Size cellSize) {
-        context.openObject(cellSize);
-        cell.render(context);
-        context.closeObject();
     }
 
     @Override
     public Size measure() {
-        TableSizeManager manager
-                = new TableSizeManager(this.getRows());
-        return manager.getTotalSize();
+        if (this.borderedTable == null) {
+            return this.wrappedTable.measure();
+        } else {
+            return this.borderedTable.measure();
+        }
     }
 
+    public void setBorder(AsciiBorder border) {
+        this.borderedTable 
+                = new Bordered(this.wrappedTable,border);
+    }
+
+    @Override
     public void setCellsPadding(Padding padding) {
-        scanAllCells(cell -> {
-            if (cell instanceof Paddable) {
-                ((Paddable) cell).setPadding(padding);
-            }
-        });
+        this.wrappedTable.setCellsPadding(padding);
     }
 
+    @Override
     public void scanAllCells(CellScanner scanner) {
-        this.rows.forEach(row -> row.getCells()
-                .forEach(cell -> scanner.scan(cell)));
+        this.wrappedTable.scanAllCells(scanner);
     }
-
 }
