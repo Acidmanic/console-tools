@@ -9,6 +9,7 @@ import com.acidmanic.consoletools.terminal.styling.TerminalControlEscapeSequence
 import com.acidmanic.consoletools.terminal.styling.TerminalStyle;
 import com.acidmanic.consoletools.terminal.styling.TerminalCommandBuilder;
 import com.acidmanic.consoletools.drawing.Size;
+import java.io.PrintStream;
 
 /**
  *
@@ -17,6 +18,15 @@ import com.acidmanic.consoletools.drawing.Size;
 public class Terminal {
 
     private static final String ESCAPE_S = String.format("%s", TerminalControlEscapeSequences.ESCAPE);
+    private final PrintStream out;
+
+    public Terminal() {
+        this.out = System.out;
+    }
+
+    public Terminal(PrintStream out) {
+        this.out = out;
+    }
 
     public Size queryCursorPosition() {
         String command = new TerminalCommandBuilder().queryCursorPosition();
@@ -39,53 +49,47 @@ public class Terminal {
         return new Size();
     }
 
-    
-
     public void setScreenAttributes(int foreground, int background) {
         String command = new TerminalCommandBuilder().setScreenColors(foreground, background);
         executeOnTerminal(command);
     }
 
-    
-    
-    public void setScreenAttributes(TerminalStyle style){
+    public void setScreenAttributes(TerminalStyle style) {
         String command = new TerminalCommandBuilder().createAttributesCommand(style);
         executeOnTerminal(command);
     }
 
-    public void resetScreenAttributes(){
+    public void resetScreenAttributes() {
         String command = new TerminalCommandBuilder().resetScreenAttributes();
         executeOnTerminal(command);
     }
 
-    
     private void executeOnTerminal(String command) {
         try {
-            System.out.write(command.getBytes());
+            this.out.write(command.getBytes());
         } catch (Throwable ex) {
         }
     }
 
-    public void moveCursor(Size positionChange){
+    public void moveCursor(Size positionChange) {
         moveCursorVertically(positionChange.getLines());
         moveCursorHorizontally(positionChange.getColumns());
     }
 
     private void moveCursorVertically(int lines) {
-        if (lines<0){
+        if (lines < 0) {
             executeOnTerminal(new TerminalCommandBuilder().moveCursorUp(-lines));
-        }else{
+        } else {
             executeOnTerminal(new TerminalCommandBuilder().moveCursorDown(lines));
         }
     }
 
     private void moveCursorHorizontally(int columns) {
-        if (columns<0){
+        if (columns < 0) {
             executeOnTerminal(new TerminalCommandBuilder().moveCursorLeft(-columns));
-        }else{
+        } else {
             executeOnTerminal(new TerminalCommandBuilder().moveCursorRight(columns));
         }
     }
-
 
 }
