@@ -5,7 +5,7 @@
  */
 package com.acidmanic.consoletools.table;
 
-import com.acidmanic.consoletools.rendering.Renderable;
+import com.acidmanic.consoletools.rendering.Box;
 import java.util.ArrayList;
 
 /**
@@ -14,14 +14,14 @@ import java.util.ArrayList;
  */
 public class Row {
 
-    ArrayList<Renderable> cells;
+    ArrayList<Box> cells;
 
     public Row() {
         this.cells = new ArrayList<>();
 
     }
 
-    public ArrayList<Renderable> getCells() {
+    public ArrayList<Box> getCells() {
         return cells;
     }
 
