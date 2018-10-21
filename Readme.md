@@ -17,24 +17,21 @@ This class contains more styling preferences. An object of type **TerminalStyle*
 
 By default, **Terminal** will control *System.out* stream, but you can change this by passing your subjected stream to its constructor.
 
+
 Print Tables
 ------------
 
-Printing tables is easy!  **Table** is a class that wraps a list of **Row**s, and a **Row** is basically a list of renderables. any renderable can be added to a Row as a cell. there is also a **Cell** class that you can use for creating cells. For a **Cell**, you can set padding and maximum width.
+Printing tables is easy!  **Table** is a class that wraps a list of **Row**s, and a **Row** is basically a list of **Box**es. any **Box** can be added to a Row as a cell. there is also a **Cell** class that you can use for creating cells. For a **Cell**. **Cell** objects can have their texts modified due to different situations. currently the only feature that is covered this way, is to break (word-wrap) text when a maximum width is set for the cell. you can unset the maximum width by setting it to -1.
 
-A **Table** itself, is also a renderable, which means you can use them as cells for an outer table.
+A **Table** itself, is also a **Box**, which means you can use them as cells for an outer table.
 
-Print with a border around
---------------------------
+A **Box** is a renderable object that you can set Padding, Border, Margin and Outline for it. Therefore both **Table** and **Cell** objects have these properties available.
 
-Another useful class is **Bordered** class. this class is a renderable wrapping another renderable and can be used instead of the original one. this way the new renderable will be drawn with a border. A **Bordered** object can get an object of type **AsciiBorder** via its constructor or through *Bordered.setAsciiBorder(.)* method. The **AsciiBorder** object will define the style of border. The hard way for creating an **AsciiBorder** object is to instanciate one, and pass needed characters for each edge and corner, through its constructor or accessor methods. If you just need a normal border around your renderable, you can easily use one of the built-in borders available in **AsciiBorders**.
-
-Since a tables and cells are **Renderable**s, they can be printed with a border just by wrapping them inside a **Bordered** object and using the **Bordered** object instead.
-
+To set border for a **Box**, you will need an **AsciiBorder** object. The **AsciiBorder** object will define the style of border. The hard way for creating an **AsciiBorder** object is to instantiate one, and pass needed characters for each edge and corner, through its constructor or accessor methods. If you just need a normal border around your renderable, you can easily use one of the built-in borders available in **AsciiBorders**.
 
 
 TextInput
-=========
+---------
 
 In the package *com.acidmanic.consoletools.drawing.interaction*, the classes **TextInput**, **InputTextBox** and **StyledTextInput** are defined. these classes are diven from **Input<String>**. **Input<T>** is an abstract class which its goal is to receive information nedded to constrcut an object of Type T.
 
@@ -95,8 +92,8 @@ Styled Printing
 
 
 
-Printing Tables
----------------
+Creating Tables, Padding and border
+-----------------------------------
 
 
 ```java
@@ -122,18 +119,23 @@ Printing Tables
         System.out.println(table.render());
 
         /* Set a padding for all cells in table */
-        table.setCellsPadding(new Padding(2, 0));
+        table.setCellsPadding(new Padding(2));
 
-        line("Table With Padding");// print a line and a message between tables
+        line("Table With Padding");// print a line and a message
 
         System.out.println(table.render());
 
         /* Make cells for second row bordered */
         Row secondRow = new Row();
 
-        secondRow.getCells().add(new Bordered(firstRowLeft));
+        Cell secondRowLeft = new Cell("Left-Cell");
+        Cell secondRowRight = new Cell("Right-Cell");
 
-        secondRow.getCells().add(new Bordered(firstRowRight));
+        secondRowLeft.setBorder(AsciiBorders.SOLID);
+        secondRowRight.setBorder(AsciiBorders.SOLID);
+
+        secondRow.getCells().add(secondRowLeft);
+        secondRow.getCells().add(secondRowRight);
 
         table.getRows().add(secondRow);
 
@@ -148,38 +150,72 @@ Printing Tables
 
         System.out.println(table.render());
 
+```
+
+Nested Tables
+-------------
+
+```java
+
+        Table outerTable = new Table();
+
+        outerTable.setBorder(AsciiBorders.DOUBLELINE);
+
         /* Adding a table as a cell */
         Table innerTable = new Table();
         innerTable.getRows().add(new Row());
         innerTable.getRows().add(new Row());
-        innerTable.getRows().get(0).getCells().add(new Bordered(new Cell("Inner00")));
-        innerTable.getRows().get(0).getCells().add(new Bordered(new Cell("Inner01")));
-        innerTable.getRows().get(1).getCells().add(new Bordered(new Cell("Inner10")));
-        innerTable.getRows().get(1).getCells().add(new Bordered(new Cell("Inner11")));
+        innerTable.getRows().get(0).getCells().add(new Cell("Inner00"));
+        innerTable.getRows().get(0).getCells().add(new Cell("Inner01"));
+        innerTable.getRows().get(1).getCells().add(new Cell("Inner10"));
+        innerTable.getRows().get(1).getCells().add(new Cell("Inner11"));
+
+        innerTable.setCellsBorders(AsciiBorders.SOLID);
+        innerTable.setBorder(AsciiBorders.SOLID);
 
         line("A Simple Table to be used as one cell");
 
         System.out.println(innerTable.render());
 
-        Row thirdRow = new Row();
-        thirdRow.getCells().add(innerTable);
+        Row row = new Row();
 
-        table.getRows().add(thirdRow);
+        /* Add a simple cell first */
+        row.getCells().add(new Cell("A Cell At Left"));
+
+        /* Add innerTable as another cell beside the former */
+        row.getCells().add(innerTable);
+
+        outerTable.getRows().add(row);
 
         line("Nested Tables");
+
+        System.out.println(outerTable.render());
+
+```
+
+Setting Cell Width
+------------------
+
+```java
+        Table table = new Table();
+
+        table.setBorder(AsciiBorders.BOLD);
+
+        Row row = new Row();
+
+        table.getRows().add(row);
+
+        Cell wrapCell = new Cell("This is a long text that hopefully will not "
+                + "fit inside the cell in one line!");
+
+        wrapCell.setMaximumWidth(20);
+        wrapCell.setBorder(AsciiBorders.SOLID);
+        row.getCells().add(wrapCell);
+
+        line("Add cell that breaks long text");
 
         System.out.println(table.render());
 
 ```
-
-
-
-
-
-
-
-
-
-
 
 
