@@ -5,12 +5,14 @@
  */
 package com.acidmanic.consoletools.rendering;
 
+import com.acidmanic.consoletools.drawing.Clip;
 import com.acidmanic.consoletools.drawing.Padding;
 import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
 import com.acidmanic.consoletools.drawing.ascii.Paddable;
 import com.acidmanic.consoletools.rendering.decorators.Bordered;
 import com.acidmanic.consoletools.rendering.decorators.Padded;
+import com.acidmanic.consoletools.rendering.decorators.Resized;
 
 /**
  *
@@ -18,28 +20,51 @@ import com.acidmanic.consoletools.rendering.decorators.Padded;
  */
 public class Box implements Renderable, Paddable {
 
+    private class Rect {
+
+        public int top;
+        public int right;
+        public int left;
+        public int bottom;
+
+        public int horizontal;
+        public int vertical;
+
+        public Rect() {
+            this.top = 0;
+            this.left = 0;
+            this.right = 0;
+            this.bottom = 0;
+            this.horizontal = 0;
+            this.vertical = 0;
+        }
+
+    }
+
     /* properties */
     private AsciiBorder border;
     private AsciiBorder outline;
 
     private Padding padding;
     private Padding margins;
-    private SizeAutomation sizeAutomation;
 
     /* status */
     private Renderable content;
+    private Resized resized;
     private Renderable padded;
     private Renderable bordered;
     private Renderable margined;
     private Renderable outlined;
+    private Rect additionalEdges;
 
     public Box(Renderable content) {
         this.content = content;
+        this.resized = null;
         this.border = null;
         this.outline = null;
         this.padding = new Padding(0);
         this.margins = new Padding(0);
-        this.sizeAutomation = new SizeAutomation();
+        this.additionalEdges = new Rect();
         setupHirarechy();
     }
 
@@ -50,7 +75,7 @@ public class Box implements Renderable, Paddable {
 
     @Override
     public Size measure() {
-        return this.sizeAutomation.measure(this.outlined);
+        return this.outlined.measure();
     }
 
     @Override
@@ -65,7 +90,8 @@ public class Box implements Renderable, Paddable {
     }
 
     private void setupHirarechy() {
-        this.padded = new Padded(this.content, this.padding);
+        this.resized = new Resized(this.content);
+        this.padded = new Padded(this.resized, this.padding);
         if (this.border == null) {
             this.bordered = this.padded;
         } else {
@@ -77,6 +103,7 @@ public class Box implements Renderable, Paddable {
         } else {
             this.outlined = new Bordered(this.margined, this.outline);
         }
+        this.additionalEdges = getAddingEdgeSizes();
     }
 
     public AsciiBorder getBorder() {
@@ -128,19 +155,43 @@ public class Box implements Renderable, Paddable {
         return ret;
     }
 
+    private Rect getAddingEdgeSizes() {
+        Rect ret = new Rect();
+        ret.top = this.padding.getTop() + this.margins.getTop();
+        ret.left = this.padding.getLeft() + this.margins.getLeft();
+        ret.bottom = this.padding.getBottom() + this.margins.getBottom();
+        ret.right = this.padding.getRight() + this.margins.getRight();
+        if (this.border != null) {
+            ret.top += 1;
+            ret.left += 1;
+            ret.right += 1;
+            ret.bottom += 1;
+        }
+        if (this.outline != null) {
+            ret.top += 1;
+            ret.left += 1;
+            ret.right += 1;
+            ret.bottom += 1;
+        }
+        ret.horizontal = ret.left + ret.right;
+        ret.vertical = ret.top + ret.bottom;
+        return ret;
+
+    }
+
     public void setHeight(int value) {
-        this.sizeAutomation.setLines(value);
+        this.resized.setHeight(value - this.additionalEdges.vertical);
     }
 
     public void setWidth(int value) {
-        this.sizeAutomation.setColumns(value);
+        this.resized.setWidth(value-this.additionalEdges.horizontal);
     }
 
     public int getHeight() {
-        return this.sizeAutomation.getLines();
+        return this.resized.getHeight()+this.additionalEdges.vertical;
     }
 
     public int getWidth() {
-        return this.sizeAutomation.getColumns();
+        return this.resized.getWidth()+this.additionalEdges.horizontal;
     }
 }
