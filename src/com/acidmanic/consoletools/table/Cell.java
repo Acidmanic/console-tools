@@ -7,7 +7,6 @@ package com.acidmanic.consoletools.table;
 
 import com.acidmanic.consoletools.rendering.Box;
 import com.acidmanic.consoletools.rendering.StringRenderable;
-import com.acidmanic.consoletools.textualcontent.builtin.TextWrapperContentModifier;
 import com.acidmanic.consoletools.textualcontent.builtin.TextWrapperStringModifier;
 
 /**
@@ -39,7 +38,7 @@ public class Cell extends Box {
         if (maximumWidth > 0) {
             this.content.getModifierManager().setModifier(new TextWrapperStringModifier(this.maximumWidth));
         } else {
-            this.content.getModifierManager().removeModifier(TextWrapperContentModifier.class);
+            this.content.getModifierManager().removeModifier(TextWrapperStringModifier.class);
         }
     }
 
