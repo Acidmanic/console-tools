@@ -20,7 +20,7 @@ public class BuiltinStringModifierPriority implements StringModifierPriority{
     public BuiltinStringModifierPriority() {
         this.priorities=new HashMap<>();
         
-        setPriority(TextWrapperContentModifier.class);
+        setPriority(TextWrapperStringModifier.class);
         setPriority(DoNothingStringModifier.class);
     }
 
