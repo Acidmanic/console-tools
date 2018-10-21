@@ -72,12 +72,21 @@ public class BufferedStringRenderingContext extends RenderingContextBase<String,
                     int columnNumber = c + currentPosition.getColumns();
                     columnNumber = (int) solution.resolveHorizontal(columnNumber);
                     if (currentClip.containsColumn(columnNumber)) {
-                        this.buffer[lineNumber][columnNumber]
-                                = lines[l].charAt(c);
+                        if (validPosition(columnNumber, lineNumber)) {
+                            this.buffer[lineNumber][columnNumber]
+                                    = lines[l].charAt(c);
+                        }
                     }
                 }
             }
         }
+    }
+
+    private boolean validPosition(int columnNumber, int lineNumber) {
+        return columnNumber >= 0
+                && columnNumber < this.size.getColumns()
+                && lineNumber >= 0
+                && lineNumber < this.size.getLines();
     }
 
 }
