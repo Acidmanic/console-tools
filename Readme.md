@@ -25,7 +25,7 @@ Printing tables is easy!  **Table** is a class that wraps a list of **Row**s, an
 
 A **Table** itself, is also a **Box**, which means you can use them as cells for an outer table.
 
-A **Box** is a renderable object that you can set Padding, Border, Margin and Outline for it. Therefore both **Table** and **Cell** objects have these properties available.
+A **Box** is a renderable object that you can set Padding, Border, Margin, Outline, Width and Height for it. Therefore both **Table** and **Cell** objects have these properties available.
 
 To set border for a **Box**, you will need an **AsciiBorder** object. The **AsciiBorder** object will define the style of border. The hard way for creating an **AsciiBorder** object is to instantiate one, and pass needed characters for each edge and corner, through its constructor or accessor methods. If you just need a normal border around your renderable, you can easily use one of the built-in borders available in **AsciiBorders**.
 
@@ -35,7 +35,7 @@ TextInput
 
 In the package *com.acidmanic.consoletools.drawing.interaction*, the classes **TextInput**, **InputTextBox** and **StyledTextInput** are defined. these classes are diven from **Input<String>**. **Input<T>** is an abstract class which its goal is to receive information nedded to constrcut an object of Type T.
 
-**TextInput** object, simply prints a message (label) and reads the result string.
+**TextInput** object, simply prints a message (label) and reads the input stream for users response.
 
 **InputTextBox** object will draw a box on the console placing the label and users answer in it.
 
@@ -45,8 +45,13 @@ In the package *com.acidmanic.consoletools.drawing.interaction*, the classes **T
 Example Codes
 =============
 
-Styled Printing
+You can find this example codes in Test Packages, under com.acidmanic.consoletools.examples. except for ExampleCode5 witch is placed in Source Packages.
+
+
+Styled Printing 
 ---------------
+
+ExampleCode1
 
 ```java
 
@@ -95,6 +100,7 @@ Styled Printing
 Creating Tables, Padding and border
 -----------------------------------
 
+ExampleCode2
 
 ```java
 
@@ -155,6 +161,8 @@ Creating Tables, Padding and border
 Nested Tables
 -------------
 
+ExampleCode3
+
 ```java
 
         Table outerTable = new Table();
@@ -196,6 +204,8 @@ Nested Tables
 Setting Cell Width
 ------------------
 
+ExampleCode4
+
 ```java
         Table table = new Table();
 
@@ -219,3 +229,26 @@ Setting Cell Width
 ```
 
 
+Using TextBoxes
+---------------
+
+
+ExampleCode5
+
+*Note that ExampleCode5 is placed in source packages instead of test packages. that's because I preferred to run this test in real console to see the outcome.*
+
+
+```java
+
+
+        InputTextBox textBox = new InputTextBox();
+        
+        textBox.setWidth(40);
+        
+        textBox.setLabel("This is going to be a logn label, it should be longer than 40 chars, then we can see if the label cell correctly breaks.");
+        
+        textBox.askInput();
+        
+        System.out.println("the value from text box: " + textBox.getValue());
+
+```
