@@ -5,6 +5,7 @@
  */
 package com.acidmanic.consoletools.table;
 
+import com.acidmanic.consoletools.rendering.Box;
 import com.acidmanic.consoletools.rendering.Renderable;
 
 /**
@@ -12,5 +13,5 @@ import com.acidmanic.consoletools.rendering.Renderable;
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
 public interface CellScanner {
-    void scan(Renderable cell);
+    void scan(Box cell);
 }
