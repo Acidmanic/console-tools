@@ -70,19 +70,22 @@ public class Clip {
     }
 
     public boolean containsColumn(int column) {
-        return column >=this.startColumn && column <= this.endColumn;
+        return column >= this.startColumn && column <= this.endColumn;
     }
 
-    
     public boolean containsLine(int line) {
-        return line >=this.startLine && line <= this.endLine;
+        return line >= this.startLine && line <= this.endLine;
     }
 
     public int getColumns() {
-        return this.endColumn-this.startColumn;
+        return this.endColumn - this.startColumn;
     }
-    
-    public int getLines(){
-        return this.endLine-this.startLine;
+
+    public int getLines() {
+        return this.endLine - this.startLine;
+    }
+
+    public Size getSize() {
+        return new Size(this.endColumn - this.startColumn, this.endLine - this.startLine);
     }
 }
