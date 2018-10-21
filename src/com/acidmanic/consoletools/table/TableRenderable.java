@@ -41,7 +41,7 @@ public class TableRenderable implements Renderable {
             Integer columns = row.getCells().size();
             int rowHeight = manager.getRowHeight(row);
             for (int i = 0; i < columns; i++) {
-                Renderable cell = row.getCells().get(i);
+                Box cell = row.getCells().get(i);
                 renderCell(context, cell, manager.getMeasuredSizeForCell(row, i));
                 context.moveHorozontally(manager.getColumnWidthForCell(row, i));
             }
@@ -50,8 +50,10 @@ public class TableRenderable implements Renderable {
         }
     }
 
-    protected void renderCell(RenderingContext context, Renderable cell, Size cellSize) {
+    protected void renderCell(RenderingContext context, Box cell, Size cellSize) {
         context.openObject(cellSize);
+        cell.setWidth(cellSize.getColumns());
+        cell.setHeight(cellSize.getLines());
         cell.render(context);
         context.closeObject();
     }
