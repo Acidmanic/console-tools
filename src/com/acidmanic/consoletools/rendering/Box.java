@@ -24,6 +24,7 @@ public class Box implements Renderable, Paddable {
 
     private Padding padding;
     private Padding margins;
+    private SizeAutomation sizeAutomation;
 
     /* status */
     private Renderable content;
@@ -38,7 +39,7 @@ public class Box implements Renderable, Paddable {
         this.outline = null;
         this.padding = new Padding(0);
         this.margins = new Padding(0);
-
+        this.sizeAutomation = new SizeAutomation();
         setupHirarechy();
     }
 
@@ -49,7 +50,7 @@ public class Box implements Renderable, Paddable {
 
     @Override
     public Size measure() {
-        return this.outlined.measure();
+        return this.sizeAutomation.measure(this.outlined);
     }
 
     @Override
@@ -127,4 +128,19 @@ public class Box implements Renderable, Paddable {
         return ret;
     }
 
+    public void setHeight(int value) {
+        this.sizeAutomation.setLines(value);
+    }
+
+    public void setWidth(int value) {
+        this.sizeAutomation.setColumns(value);
+    }
+
+    public int getHeight() {
+        return this.sizeAutomation.getLines();
+    }
+
+    public int getWidth() {
+        return this.sizeAutomation.getColumns();
+    }
 }
