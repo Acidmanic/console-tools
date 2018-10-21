@@ -12,6 +12,7 @@ import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
 import com.acidmanic.consoletools.rendering.Renderable;
 import com.acidmanic.consoletools.rendering.decorators.Bordered;
 import com.acidmanic.consoletools.rendering.decorators.Padded;
+import com.acidmanic.consoletools.rendering.decorators.Resized;
 import com.acidmanic.consoletools.table.Cell;
 import com.acidmanic.consoletools.terminal.Terminal;
 import com.acidmanic.consoletools.terminal.styling.TerminalStyles;
@@ -43,6 +44,14 @@ public class DecoratorsTest {
         Renderable outlined = new Bordered(margined, AsciiBorders.DOUBLELINE);
 
         print(outlined, "Outlined");
+        
+        
+        Resized resized = new Resized(outlined);
+        
+        resized.setWidth(40);
+        resized.setHeight(30);
+        
+        print(resized,"Resized");
 
     }
 
