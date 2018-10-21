@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package consoletools.tests.playgrounds;
+package com.acidmanic.consoletools.playgrounds;
 
 import com.acidmanic.consoletools.drawing.Padding;
 import com.acidmanic.consoletools.drawing.ascii.AsciiBorders;

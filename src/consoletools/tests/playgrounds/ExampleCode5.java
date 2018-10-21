@@ -9,20 +9,28 @@ import com.acidmanic.consoletools.drawing.interaction.InputTextBox;
 
 /**
  *
+ *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public class TextBoxTest {
+public class ExampleCode5 {
 
     /**
+     * This example demonstrates using an InputTextBox to get an string from
+     * user.
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         InputTextBox textBox = new InputTextBox();
+        
         textBox.setWidth(40);
+        
         textBox.setLabel("This is going to be a logn label, it should be longer than 40 chars, then we can see if the label cell correctly breaks.");
+        
         textBox.askInput();
+        
         System.out.println("the value from text box: " + textBox.getValue());
     }
-    
+
 }
