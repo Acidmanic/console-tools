@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package consoletools.tests.playgrounds;
+package com.acidmanic.consoletools.playgrounds;
 
 import com.acidmanic.consoletools.drawing.Padding;
-import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
 import com.acidmanic.consoletools.drawing.ascii.AsciiBorders;
-import com.acidmanic.consoletools.rendering.Renderable;
-import com.acidmanic.consoletools.table.Bordered;
 import com.acidmanic.consoletools.table.Cell;
 import com.acidmanic.consoletools.table.Row;
 import com.acidmanic.consoletools.table.Table;
@@ -18,7 +15,7 @@ import com.acidmanic.consoletools.table.Table;
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public class PaddingButtomPlayground {
+public class PaddingBottomPlayground {
 
     public static void main(String[] args) {
         Table table = new Table();
@@ -27,7 +24,9 @@ public class PaddingButtomPlayground {
 
         Cell cell2 = new Cell("CELL\nCONTENT");
 
-        row2.getCells().add(new Bordered(cell2,AsciiBorders.SOLID));
+        cell2.setBorder(AsciiBorders.SOLID);
+
+        row2.getCells().add(cell2);
 
         cell2.setPadding(new Padding(4, 4, 4, 4));
 

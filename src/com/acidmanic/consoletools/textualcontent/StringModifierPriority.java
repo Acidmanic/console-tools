@@ -9,6 +9,6 @@ package com.acidmanic.consoletools.textualcontent;
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public interface Content {
-    String getContent();
+public interface StringModifierPriority {
+    boolean compare(StringModifier wraps,StringModifier isBeeingWrapped);
 }

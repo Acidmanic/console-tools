@@ -5,24 +5,23 @@
  */
 package com.acidmanic.consoletools.textualcontent.builtin;
 
-import com.acidmanic.consoletools.textualcontent.ContentModifier;
-import com.acidmanic.consoletools.textualcontent.ContentModifierPriority;
+import com.acidmanic.consoletools.textualcontent.StringModifier;
+import com.acidmanic.consoletools.textualcontent.StringModifierPriority;
 import java.util.HashMap;
 
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public class BuiltinContentModifierPriority implements ContentModifierPriority{
+public class BuiltinStringModifierPriority implements StringModifierPriority{
 
     private final HashMap<String, Integer> priorities;
 
-    public BuiltinContentModifierPriority() {
+    public BuiltinStringModifierPriority() {
         this.priorities=new HashMap<>();
         
-        setPriority(PadderContentModifier.class);
-        setPriority(TextWrapperContentModifier.class);
-        setPriority(RawStringContent.class);
+        setPriority(TextWrapperStringModifier.class);
+        setPriority(DoNothingStringModifier.class);
     }
 
     private void setPriority(Class type) {
@@ -37,7 +36,7 @@ public class BuiltinContentModifierPriority implements ContentModifierPriority{
         return -1;
     }
     @Override
-    public boolean compare(ContentModifier wraps, ContentModifier isBeeingWrapped) {
+    public boolean compare(StringModifier wraps, StringModifier isBeeingWrapped) {
         return getPriority(isBeeingWrapped.getClass()) 
                 >
                 getPriority(wraps.getClass());

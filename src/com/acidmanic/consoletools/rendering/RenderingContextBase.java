@@ -96,5 +96,9 @@ public abstract class RenderingContextBase<Tin, Tout> implements RenderingContex
         return this.currentClip;
     }
 
-    
+    @Override
+    public void put(Tin content) {
+        put(content, (Size actual, Size expected) -> SizeMatchStrategySolution.DEFAULT);
+    }
+
 }

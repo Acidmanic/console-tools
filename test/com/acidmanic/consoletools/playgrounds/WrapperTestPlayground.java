@@ -5,8 +5,7 @@
  */
 package com.acidmanic.consoletools.playgrounds;
 
-import com.acidmanic.consoletools.textualcontent.builtin.RawStringContent;
-import com.acidmanic.consoletools.textualcontent.builtin.TextWrapperContentModifier;
+import com.acidmanic.consoletools.textualcontent.builtin.TextWrapperStringModifier;
 
 /**
  *
@@ -22,12 +21,11 @@ public class WrapperTestPlayground {
                 + "\tline One.\n"
                 + "\tline two.\n"
                 + "and description after two lines");
-        //text = "This is a long line";
-        RawStringContent content = new RawStringContent(text);
-        TextWrapperContentModifier wrapper = new 
-            TextWrapperContentModifier(15, content);
+
+        TextWrapperStringModifier wrapper = new 
+            TextWrapperStringModifier(15);
         
-        analyzePrint(wrapper.getContent());
+        analyzePrint(wrapper.process(text));
     }
 
     private static void analyzePrint(String content) {

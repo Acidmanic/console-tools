@@ -6,34 +6,18 @@
 package com.acidmanic.consoletools.textualcontent.builtin;
 
 import com.acidmanic.consoletools.string.StringExtensions;
-import com.acidmanic.consoletools.textualcontent.Content;
-import com.acidmanic.consoletools.textualcontent.ContentModifier;
+import com.acidmanic.consoletools.textualcontent.StringModifier;
 
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public class TextWrapperContentModifier extends ContentModifier {
+public class TextWrapperStringModifier implements StringModifier {
 
     private final int maximumWidth;
 
-    public TextWrapperContentModifier(int forcedWidth, Content innerContent) {
-        super(innerContent);
+    public TextWrapperStringModifier(int forcedWidth) {
         this.maximumWidth = forcedWidth;
-    }
-
-    @Override
-    public String getContent() {
-        String content = this.getInnerContent().getContent();
-        String lines[] = content.split("\\n");
-        StringBuilder sb = new StringBuilder();
-        String sep = "";
-        for (String line : lines) {
-            line = wrapIfNeeded(line);
-            sb.append(sep).append(line);
-            sep = "\n";
-        }
-        return sb.toString();
     }
 
     private String devide(String part, StringBuilder sb) {
@@ -54,10 +38,23 @@ public class TextWrapperContentModifier extends ContentModifier {
                 width = 0;
                 ret.append("\n");
             }
-            part=devide(part, ret);
+            part = devide(part, ret);
             ret.append(part);
             width += part.length();
         }
         return ret.toString();
+    }
+
+    @Override
+    public String process(String original) {
+        String lines[] = original.split("\\n");
+        StringBuilder sb = new StringBuilder();
+        String sep = "";
+        for (String line : lines) {
+            line = wrapIfNeeded(line);
+            sb.append(sep).append(line);
+            sep = "\n";
+        }
+        return sb.toString();
     }
 }

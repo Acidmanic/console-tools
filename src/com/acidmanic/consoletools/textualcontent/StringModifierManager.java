@@ -5,7 +5,7 @@
  */
 package com.acidmanic.consoletools.textualcontent;
 
-import com.acidmanic.consoletools.textualcontent.builtin.BuiltinContentModifierPriority;
+import com.acidmanic.consoletools.textualcontent.builtin.BuiltinStringModifierPriority;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,29 +13,29 @@ import java.util.HashMap;
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public class ContentModifierManager {
+public class StringModifierManager {
 
     private final HashMap<String, Integer> modifersIndexes;
-    private final ArrayList<ContentModifier> modifiers;
-    private final ContentModifierPriority priority;
+    private final ArrayList<StringModifier> modifiers;
+    private final StringModifierPriority priority;
 
-    public ContentModifierManager() {
-        this(new BuiltinContentModifierPriority());
+    public StringModifierManager() {
+        this(new BuiltinStringModifierPriority());
     }
 
-    public ContentModifierManager(ContentModifierPriority priority) {
+    public StringModifierManager(StringModifierPriority priority) {
         this.priority = priority;
         this.modifersIndexes = new HashMap<>();
         this.modifiers = new ArrayList<>();
     }
 
-    public void setModifier(ContentModifier modifier) {
+    public void setModifier(StringModifier modifier) {
         String key = modifier.getClass().getName();
         removeModifierIfExists(key);
         addModifier(key, modifier);
     }
 
-    private void addModifier(String key, ContentModifier modifier) {
+    private void addModifier(String key, StringModifier modifier) {
         this.modifersIndexes.put(key, modifiers.size());
         this.modifiers.add(modifier);
     }
@@ -53,13 +53,13 @@ public class ContentModifierManager {
         removeModifierIfExists(type.getName());
     }
 
-    public Content applyAll(Content content) {
+    public String applyAll(String value) {
         sortByPriority();
-        for (ContentModifier modifier : this.modifiers) {
-            modifier.setInnerContent(content);
-            content = modifier;
+        String ret = value;
+        for (StringModifier modifier : this.modifiers) {
+            ret = modifier.process(ret);
         }
-        return content;
+        return ret;
     }
 
     private void sortByPriority() {
@@ -83,7 +83,7 @@ public class ContentModifierManager {
         this.modifersIndexes.remove(keyWrapper);
         this.modifersIndexes.put(keyWrapper, i1);
         this.modifersIndexes.put(keyWrapped, i2);
-        ContentModifier temp = this.modifiers.get(i1);
+        StringModifier temp = this.modifiers.get(i1);
         this.modifiers.set(i1, this.modifiers.get(i2));
         this.modifiers.set(i2, temp);
     }

@@ -11,13 +11,13 @@ import com.acidmanic.consoletools.drawing.ascii.AsciiBorders;
 import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
 import com.acidmanic.consoletools.rendering.Renderable;
 import com.acidmanic.consoletools.rendering.RenderingContext;
-import com.acidmanic.consoletools.table.Bordered;
+import com.acidmanic.consoletools.rendering.decorators.Bordered;
 import com.acidmanic.consoletools.table.Cell;
 import com.acidmanic.consoletools.table.Row;
 import com.acidmanic.consoletools.table.Table;
 import com.acidmanic.consoletools.terminal.Terminal;
-import com.acidmanic.consoletools.terminal.TerminalStyle;
-import com.acidmanic.consoletools.terminal.TerminalStyles;
+import com.acidmanic.consoletools.terminal.styling.TerminalStyle;
+import com.acidmanic.consoletools.terminal.styling.TerminalStyles;
 
 /**
  *
@@ -82,23 +82,21 @@ public class InputTextBox extends Input<String> {
         this.innerBorders = innerBorders;
     }
 
-    
-    
-    
     @Override
     public String askInput() {
         Table table = new Table();
         Cell labelCell = new Cell(paddLabel());
         labelCell.setMaximumWidth(this.getWidth());
+        labelCell.setBorder(this.innerBorders);
 
         table.getRows().add(new Row());
         table.getRows().add(new Row());
 
-        table.getRows().get(0).getCells().add(new Bordered(labelCell, this.innerBorders));
+        table.getRows().get(0).getCells().add(labelCell);
 
         Cell valueCell = new Cell("");
-
-        table.getRows().get(1).getCells().add(new Bordered(valueCell, this.innerBorders));
+        valueCell.setBorder(this.innerBorders);
+        table.getRows().get(1).getCells().add(valueCell);
 
         Renderable borderedTable = new Bordered(table, this.tableBorder);
 

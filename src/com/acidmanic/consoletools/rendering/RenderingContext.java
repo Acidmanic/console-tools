@@ -29,6 +29,8 @@ public interface RenderingContext<Tin,Tout> {
     
     void closeObject();
     
+    void put(Tin content,SizeMatchStrategy putStrategy);
+    
     void put(Tin content);
 
     Tout represent();

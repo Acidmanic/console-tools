@@ -10,6 +10,7 @@ package com.acidmanic.consoletools.drawing.ascii;
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
 public class AsciiBorder {
+
     private String top;
     private String left;
     private String buttom;
@@ -26,8 +27,8 @@ public class AsciiBorder {
 
     public AsciiBorder(String top, String left, String buttom, String right,
             String topleftCorner, String topRightCorner, String bottomLeftCorner,
-            String bottomRightCorner, String leftJointed, String rightJointed, 
-            String topJointed, String bottomJointed,String fullJointed) {
+            String bottomRightCorner, String leftJointed, String rightJointed,
+            String topJointed, String bottomJointed, String fullJointed) {
         this.top = top;
         this.left = left;
         this.buttom = buttom;
@@ -44,6 +45,22 @@ public class AsciiBorder {
     }
 
     public AsciiBorder() {
+    }
+
+    public AsciiBorder(AsciiBorder value) {
+        this.top = value.top;
+        this.left = value.left;
+        this.buttom = value.buttom;
+        this.right = value.right;
+        this.topleftCorner = value.topleftCorner;
+        this.topRightCorner = value.topRightCorner;
+        this.bottomLeftCorner = value.bottomLeftCorner;
+        this.bottomRightCorner = value.bottomRightCorner;
+        this.leftJointed = value.leftJointed;
+        this.rightJointed = value.rightJointed;
+        this.topJointed = value.topJointed;
+        this.bottomJointed = value.bottomJointed;
+        this.fullJointed = value.fullJointed;
     }
 
     public String getTop() {
@@ -149,7 +166,5 @@ public class AsciiBorder {
     public void setFullJointed(String fullJointed) {
         this.fullJointed = fullJointed;
     }
-    
-    
-    
+
 }
