@@ -7,7 +7,8 @@ package com.acidmanic.consoletools.table;
 
 import com.acidmanic.consoletools.drawing.Padding;
 import com.acidmanic.consoletools.drawing.Size;
-import com.acidmanic.consoletools.drawing.ascii.Paddable;
+import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
+import com.acidmanic.consoletools.rendering.Box;
 import com.acidmanic.consoletools.rendering.Renderable;
 import com.acidmanic.consoletools.rendering.RenderingContext;
 import java.util.ArrayList;
@@ -16,27 +17,15 @@ import java.util.List;
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
- * @param <TContext>
  */
-public abstract class TableBase<TContext> implements ITable<TContext> {
+public class TableRenderable implements Renderable {
 
     protected final ArrayList<Row> rows;
 
-    protected abstract RenderingContext createContext();
-
-    public TableBase() {
+    public TableRenderable() {
         this.rows = new ArrayList<>();
     }
 
-    @Override
-    public TContext render() {
-        RenderingContext context = createContext();
-        context.clear();
-        this.render(context);
-        return (TContext) context.represent();
-    }
-
-    @Override
     public ArrayList<Row> getRows() {
         return rows;
     }
@@ -73,19 +62,16 @@ public abstract class TableBase<TContext> implements ITable<TContext> {
         return manager.getTotalSize();
     }
 
-    
-    @Override
     public void setCellsPadding(Padding padding) {
-        scanAllCells((Renderable cell) -> {
-            if (cell instanceof Paddable) {
-                ((Paddable) cell).setPadding(padding);
-            }
-        });
+        scanAllCells((Box cell) -> cell.setPadding(padding));
     }
-    
-    @Override
+
+    public void setCellsBorders(AsciiBorder border) {
+        scanAllCells((Box cell) -> cell.setBorder(border));
+    }
+
     public void scanAllCells(CellScanner scanner) {
-        this.rows.forEach((Row row) -> row.getCells().forEach((Renderable cell) -> scanner.scan(cell)));
+        this.rows.forEach((Row row) -> row.getCells().forEach((Box cell) -> scanner.scan(cell)));
     }
 
 }
