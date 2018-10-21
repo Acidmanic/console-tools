@@ -44,6 +44,13 @@ public class Padding {
         this.right = value;
     }
 
+    public Padding(Padding value) {
+        this.top = value.top;
+        this.bottom = value.bottom;
+        this.left = value.left;
+        this.right = value.right;
+    }
+
     public int getTop() {
         return top;
     }
@@ -76,6 +83,4 @@ public class Padding {
         this.right = right;
     }
 
-    
-    
 }
