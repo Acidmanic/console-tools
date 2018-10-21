@@ -7,8 +7,6 @@ package com.acidmanic.consoletools.examples;
 
 import com.acidmanic.consoletools.drawing.Padding;
 import com.acidmanic.consoletools.drawing.ascii.AsciiBorders;
-import com.acidmanic.consoletools.rendering.Renderable;
-import com.acidmanic.consoletools.rendering.decorators.Bordered;
 import com.acidmanic.consoletools.table.Cell;
 import com.acidmanic.consoletools.table.Row;
 import com.acidmanic.consoletools.table.Table;
@@ -44,18 +42,23 @@ public class ExampleCode2 {
         System.out.println(table.render());
 
         /* Set a padding for all cells in table */
-        table.setCellsPadding(new Padding(2, 0));
+        table.setCellsPadding(new Padding(2));
 
-        line("Table With Padding");// print a line and a message between tables
+        line("Table With Padding");// print a line and a message
 
         System.out.println(table.render());
 
         /* Make cells for second row bordered */
         Row secondRow = new Row();
 
-        secondRow.getCells().add(new Bordered(firstRowLeft));
+        Cell secondRowLeft = new Cell("Left-Cell");
+        Cell secondRowRight = new Cell("Right-Cell");
 
-        secondRow.getCells().add(new Bordered(firstRowRight));
+        secondRowLeft.setBorder(AsciiBorders.SOLID);
+        secondRowRight.setBorder(AsciiBorders.SOLID);
+
+        secondRow.getCells().add(secondRowLeft);
+        secondRow.getCells().add(secondRowRight);
 
         table.getRows().add(secondRow);
 
@@ -67,28 +70,6 @@ public class ExampleCode2 {
         table.setBorder(AsciiBorders.DOUBLELINE);
 
         line("Bordered Table");
-
-        System.out.println(table.render());
-
-        /* Adding a table as a cell */
-        Table innerTable = new Table();
-        innerTable.getRows().add(new Row());
-        innerTable.getRows().add(new Row());
-        innerTable.getRows().get(0).getCells().add(new Bordered(new Cell("Inner00")));
-        innerTable.getRows().get(0).getCells().add(new Bordered(new Cell("Inner01")));
-        innerTable.getRows().get(1).getCells().add(new Bordered(new Cell("Inner10")));
-        innerTable.getRows().get(1).getCells().add(new Bordered(new Cell("Inner11")));
-
-        line("A Simple Table to be used as one cell");
-
-        System.out.println(innerTable.render());
-
-        Row thirdRow = new Row();
-        thirdRow.getCells().add(innerTable);
-
-        table.getRows().add(thirdRow);
-
-        line("Nested Tables");
 
         System.out.println(table.render());
 
