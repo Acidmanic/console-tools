@@ -5,7 +5,9 @@
  */
 package com.acidmanic.consoletools.rendering;
 
+import com.acidmanic.consoletools.drawing.Position;
 import com.acidmanic.consoletools.drawing.Size;
+import com.acidmanic.consoletools.drawing.ascii.Measurer;
 
 /**
  *
@@ -39,28 +41,41 @@ public class BufferedStringRenderingContext extends RenderingContextBase<String,
     }
 
     @Override
-    public void put(String content) {
-        String[] lines = content.split("\\n");
-        for (int l = 0; l < lines.length; l++) {
-            int lineNumber = l + currentPosition.getLines();
-            if (currentClip.containsLine(lineNumber)) {
-                for (int c = 0; c < lines[l].length(); c++) {
-                    int columnNumber = c + currentPosition.getColumns();
-                    if (currentClip.containsColumn(columnNumber)) {
-                        this.buffer[lineNumber][columnNumber]
-                                = lines[l].charAt(c);
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
     public final void clear() {
         super.clear();
         for (int i = 0; i < buffer.length; i++) {
             for (int j = 0; j < buffer[i].length; j++) {
                 buffer[i][j] = ' ';
+            }
+        }
+    }
+
+    private Position resolve(int lineNumber, int columnNumber, SizeMatchStrategySolution solution) {
+        int l = (int) (((float) lineNumber) * solution.getScale().getVertical());
+        int c = (int) (((float) columnNumber) * solution.getScale().getHorizontal());
+        l += solution.getTranslate().getLines();
+        c += solution.getTranslate().getColumns();
+
+        return new Position(c, l);
+    }
+
+    @Override
+    public void put(String content, SizeMatchStrategy putStrategy) {
+        Size size = new Measurer().getSize(content);
+        SizeMatchStrategySolution solution = putStrategy.solve(size, this.currentClip.getSize());
+        String[] lines = content.split("\\n");
+        for (int l = 0; l < lines.length; l++) {
+            int lineNumber = l + currentPosition.getLines();
+            lineNumber = (int) solution.resolveVertical(lineNumber);
+            if (currentClip.containsLine(lineNumber)) {
+                for (int c = 0; c < lines[l].length(); c++) {
+                    int columnNumber = c + currentPosition.getColumns();
+                    columnNumber = (int) solution.resolveHorizontal(columnNumber);
+                    if (currentClip.containsColumn(columnNumber)) {
+                        this.buffer[lineNumber][columnNumber]
+                                = lines[l].charAt(c);
+                    }
+                }
             }
         }
     }
