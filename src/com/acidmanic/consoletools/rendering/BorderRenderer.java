@@ -5,7 +5,7 @@
  */
 package com.acidmanic.consoletools.rendering;
 
-import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
+import com.acidmanic.consoletools.drawing.AsciiBorder;
 
 /**
  *

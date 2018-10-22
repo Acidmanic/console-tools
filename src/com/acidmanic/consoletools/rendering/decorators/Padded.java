@@ -7,7 +7,7 @@ package com.acidmanic.consoletools.rendering.decorators;
 
 import com.acidmanic.consoletools.drawing.Padding;
 import com.acidmanic.consoletools.drawing.Size;
-import com.acidmanic.consoletools.rendering.Renderable;
+import com.acidmanic.consoletools.rendering.componentfeatures.Renderable;
 import com.acidmanic.consoletools.rendering.RenderingContext;
 
 /**

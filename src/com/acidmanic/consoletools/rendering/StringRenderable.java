@@ -5,6 +5,7 @@
  */
 package com.acidmanic.consoletools.rendering;
 
+import com.acidmanic.consoletools.rendering.componentfeatures.Renderable;
 import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.string.StringMeasurer;
 import com.acidmanic.consoletools.textualcontent.StringModifierManager;

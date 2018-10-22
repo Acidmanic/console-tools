@@ -6,7 +6,7 @@
 package com.acidmanic.consoletools.table;
 
 import com.acidmanic.consoletools.drawing.Padding;
-import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
+import com.acidmanic.consoletools.drawing.AsciiBorder;
 import com.acidmanic.consoletools.rendering.Box;
 import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
 import java.util.ArrayList;
