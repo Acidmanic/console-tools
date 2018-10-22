@@ -5,6 +5,7 @@
  */
 package com.acidmanic.consoletools.rendering;
 
+import com.acidmanic.consoletools.rendering.sizing.SizeMatchStrategy;
 import com.acidmanic.consoletools.drawing.Clip;
 import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.drawing.Position;
