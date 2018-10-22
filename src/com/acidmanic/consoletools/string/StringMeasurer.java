@@ -7,7 +7,6 @@ package com.acidmanic.consoletools.string;
 
 import com.acidmanic.consoletools.drawing.Size;
 import com.acidmanic.consoletools.drawing.Padding;
-import com.acidmanic.consoletools.string.StringExtensions;
 
 /**
  *
