@@ -5,6 +5,7 @@
  */
 package com.acidmanic.consoletools.drawing.interaction;
 
+import com.acidmanic.consoletools.interaction.TextInput;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

@@ -5,7 +5,7 @@
  */
 package consoletools.tests.playgrounds;
 
-import com.acidmanic.consoletools.drawing.interaction.InputTextBox;
+import com.acidmanic.consoletools.interaction.InputTextBox;
 
 /**
  *
