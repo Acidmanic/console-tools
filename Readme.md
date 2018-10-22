@@ -6,14 +6,24 @@ What does this library have?
 * Very simple text input components. like StyledTextInputBox.
 
 
+
+Dependency
+===========
+
+This library does not depend on any external dependency.
+
+
+
+
+
 How to use it
 =============
 
 Print Styled text.
 ----------------------
 
-To print styled text, you can use the class: **Terminal**. It can move the cursor, set the foreground and background colors separatedly. Another way for styling printed text, is to call *Terminal.setScreenAttributes()* method with a **TerminalStyle** object. 
-This class contains more styling preferences. An object of type **TerminalStyle**, can be constructed and configured manually using it's accessors. you can also use one of the built-in Styles avalable in **TerminalStyles** class. 
+To print styled text, you can use the class: **Terminal**. It can move the cursor, set the foreground and background colors separately. Another way for styling printed text, is to call *Terminal.setScreenAttributes()* method with a **TerminalStyle** object. 
+This class contains more styling preferences. An object of type **TerminalStyle**, can be constructed and configured manually using it's accessors. you can also use one of the built-in Styles available in **TerminalStyles** class. 
 
 By default, **Terminal** will control *System.out* stream, but you can change this by passing your subjected stream to its constructor.
 
@@ -33,7 +43,7 @@ To set border for a **Box**, you will need an **AsciiBorder** object. The **Asci
 TextInput
 ---------
 
-In the package *com.acidmanic.consoletools.drawing.interaction*, the classes **TextInput**, **InputTextBox** and **StyledTextInput** are defined. these classes are diven from **Input<String>**. **Input<T>** is an abstract class which its goal is to receive information nedded to constrcut an object of Type T.
+In the package *com.acidmanic.consoletools.drawing.interaction*, the classes **TextInput**, **InputTextBox** and **StyledTextInput** are defined. these classes are driven from **Input<String>**. **Input<T>** is an abstract class which its goal is to receive information needed to construct an object of Type T.
 
 **TextInput** object, simply prints a message (label) and reads the input stream for users response.
 
@@ -245,10 +255,24 @@ ExampleCode5
         
         textBox.setWidth(40);
         
-        textBox.setLabel("This is going to be a logn label, it should be longer than 40 chars, then we can see if the label cell correctly breaks.");
+        textBox.setLabel("This is going to be a logn label, it should be longer than 40 chars," +
+         " then we can see if the label cell correctly breaks.");
         
         textBox.askInput();
         
         System.out.println("the value from text box: " + textBox.getValue());
 
 ```
+
+
+
+Bugs, Issues, Typos..
+=====================
+
+
+Please contact me if you hit any bugs, or you found any mandatory features missing or even types. Thanks 👍
+
+
+
+
+
