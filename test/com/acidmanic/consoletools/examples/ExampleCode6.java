@@ -35,7 +35,7 @@ public class ExampleCode6 {
                         .textAll("*").borderAll().padAll(3, 1).tableBorder())
                 .build();
 
-        new Console().println(table);
+        System.out.println(table.render());
 
     }
 }
