@@ -5,12 +5,9 @@
  */
 package com.acidmanic.consoletools.examples;
 
-import com.acidmanic.consoletools.drawing.AsciiBorder;
 import com.acidmanic.consoletools.drawing.AsciiBorders;
-import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
 import com.acidmanic.consoletools.table.Table;
 import com.acidmanic.consoletools.table.builders.TableBuilder;
-import com.acidmanic.consoletools.utility.Console;
 
 /**
  *
@@ -28,11 +25,14 @@ public class ExampleCode6 {
                         .row().cell("00").cell("01")
                         .row().cell("10").cell("11")
                         .borderAll().tableBorder())
-                .row().cell("Bottom-Left").border()
-                .cell("Middle").border()
-                .cell("Bottom-Right").border()
+                .row().cell("Bottom-Left").border(AsciiBorders.DOUBLELINE)
+                .cell("Middle").border(AsciiBorders.BOLD)
+                .cell("Bottom-Right").border(AsciiBorders.SOLID)
                 .row().cell((TableBuilder builder) -> builder.table(3, 3)
                         .textAll("*").borderAll().padAll(3, 1).tableBorder())
+                .cell((TableBuilder builder)
+                        -> builder.table(new String[][]{{"A", "B"}, {"C", "D"},{"E","F"}})
+                        .padAll(3,2).tableBorder(AsciiBorders.BOLD))
                 .build();
 
         System.out.println(table.render());
