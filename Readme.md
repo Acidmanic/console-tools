@@ -3,6 +3,7 @@ What does this library have?
 
 * A set of classes to managedly control terminal styles and colors.
 * A set of classes that provide some table rendering functionality.
+* a fluent syntax **TableBuilder** class.
 * Very simple text input components. like StyledTextInputBox.
 
 
@@ -39,6 +40,18 @@ A **Box** is a renderable object that you can set Padding, Border, Margin, Outli
 
 To set border for a **Box**, you will need an **AsciiBorder** object. The **AsciiBorder** object will define the style of border. The hard way for creating an **AsciiBorder** object is to instantiate one, and pass needed characters for each edge and corner, through its constructor or accessor methods. If you just need a normal border around your renderable, you can easily use one of the built-in borders available in **AsciiBorders**.
 
+You can instanciate Table, Row and Cell classes, set their properties to desired values. and compose a table manually this way. but this approach takes too many lines of code specially when your table gets complex. the better alternative is to use **TableBuilder** class. This class provides a lot of fluent syntax methods that can form a simple or a complex table with very shorter and more readable code.
+
+
+There are also the **RowBuilder** class and **CellBuilder** class, which you would not need to use them unless you want to create, for example, a **Cell** which is not supposed to belong to any table or any rows and it might be rendered directly. The same for the **RowBuider** class. **TableBuilder** though uses these classes when you call *TableBuilder.cell(.)* or *TableBuilder.row(.)*  with a lambda expression.
+
+
+
+**⚠ Note**:  *__TableBuilder__ needs to setup properties for a tree-structured data. considering the table as root, each row as a child for the root, then each cell can be a leaf or a root for another tree. so when you set a property for a row/cell, which row/cell would that be? the answer is "Always the last one". therefore, for example, tableBuilder.text("SomeText") will set the text for last cell added to the last row. in other words: **Think sequentially when you use TableBuilder**, and it will work as expected. And sequentially would mean: top to bottom for rows, and left to right for cells.*
+
+**⚠ Note**:  *Setting a cell property when there is no cell added, will not lead to an exception. instead a new cell will be created and added to last row, and the given property will be added to it. The same will be for when there is no row added. so you don't have to call row(.) and cell(.) methods for first row and for first cells.*
+
+
 
 TextInput
 ---------
@@ -55,7 +68,15 @@ In the package *com.acidmanic.consoletools.drawing.interaction*, the classes **T
 Example Codes
 =============
 
-You can find this example codes in Test Packages, under com.acidmanic.consoletools.examples. except for ExampleCode5 witch is placed in Source Packages.
+You can find this example codes in Test Packages, under com.acidmanic.consoletools.examples. except for ExampleCode5 witch is placed in Source Packages for being able to run/test it from real command-line after application build.
+
+ExampleCode 1 shows how to print text with different styles on any print-stream.
+
+ExampleCodes 2 to 4 show how to create tables manually. the main goal here is to show what are table components and what we can do with them. but in practice I personally prefer to use the **TableBuilder** class. ExampleCode6 provides an example of composeing tables using **TableBuilder**. 
+
+ExampleCode5 shows a usage of **InputTextBox**.
+
+ExampleCode6 is again about creating tables. but this time the table is being created using a **TableBuilder** with fluent syntax (chainable) methods.
 
 
 Styled Printing 
@@ -239,6 +260,80 @@ ExampleCode4
 ```
 
 
+TableBuilder for table creation
+-------------------------------
+
+ExampleCode6
+
+This code creates a table with three rows. First row has a text-only cell in the left, and a binary table as seconds cell, in the right. the second row has three text cells with different border types. Third row has two pre-populated tables, each as a cell. the left side cell is a pre-populated table, created using *table(rows,columns)* method, the table and each cell received a Solid (default) border. right side cell, is also a pre-populated table, created using a String[][] array.
+
+
+```java
+
+        Table table = new TableBuilder()
+                .tableBorder(AsciiBorders.BOLD)
+                .cell("OnlyCell")
+                .border()
+                .cell((TableBuilder builder) -> builder
+                        .row().cell("00").cell("01")
+                        .row().cell("10").cell("11")
+                        .borderAll().tableBorder())
+                .row().cell("Bottom-Left").border(AsciiBorders.DOUBLELINE)
+                .cell("Middle").border(AsciiBorders.BOLD)
+                .cell("Bottom-Right").border(AsciiBorders.SOLID)
+                .row().cell((TableBuilder builder) -> builder.table(3, 3)
+                        .textAll("*").borderAll().padAll(3, 1).tableBorder())
+                .cell((TableBuilder builder)
+                        -> builder.table(new String[][]{{"A", "B"}, {"C", "D"},{"E","F"}})
+                        .padAll(3,2).tableBorder(AsciiBorders.BOLD))
+                .build();
+
+        System.out.println(table.render());
+
+```
+
+The resulting table would be like:
+
+```bash
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃┌───────────────────────────┐┌──────────────┐┃
+┃│OnlyCell                   ││┌──┐┌──┐      │┃
+┃│                           │││00││01│      │┃
+┃│                           ││└──┘└──┘      │┃
+┃│                           ││┌──┐┌──┐      │┃
+┃│                           │││10││11│      │┃
+┃│                           ││└──┘└──┘      │┃
+┃└───────────────────────────┘└──────────────┘┃
+┃╔═══════════════╗┏━━━━━━━━━┓┌───────────────┐┃
+┃║Bottom-Left    ║┃Middle   ┃│Bottom-Right   │┃
+┃╚═══════════════╝┗━━━━━━━━━┛└───────────────┘┃
+┃┌───────────────────────────┐┏━━━━━━━━━━━━━━┓┃
+┃│┌───────┐┌───────┐┌───────┐│┃              ┃┃
+┃││       ││       ││       ││┃              ┃┃
+┃││   *   ││   *   ││   *   ││┃   A      B   ┃┃
+┃││       ││       ││       ││┃              ┃┃
+┃│└───────┘└───────┘└───────┘│┃              ┃┃
+┃│┌───────┐┌───────┐┌───────┐│┃              ┃┃
+┃││       ││       ││       ││┃              ┃┃
+┃││   *   ││   *   ││   *   ││┃   C      D   ┃┃
+┃││       ││       ││       ││┃              ┃┃
+┃│└───────┘└───────┘└───────┘│┃              ┃┃
+┃│┌───────┐┌───────┐┌───────┐│┃              ┃┃
+┃││       ││       ││       ││┃              ┃┃
+┃││   *   ││   *   ││   *   ││┃   E      F   ┃┃
+┃││       ││       ││       ││┃              ┃┃
+┃│└───────┘└───────┘└───────┘│┃              ┃┃
+┃└───────────────────────────┘┗━━━━━━━━━━━━━━┛┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+```
+
+
+
+
+
+
 Using TextBoxes
 ---------------
 
@@ -255,7 +350,7 @@ ExampleCode5
         
         textBox.setWidth(40);
         
-        textBox.setLabel("This is going to be a logn label, it should be longer than 40 chars," +
+        textBox.setLabel("This is going to be a long label, it should be longer than 40 chars," +
          " then we can see if the label cell correctly breaks.");
         
         textBox.askInput();
@@ -269,8 +364,10 @@ ExampleCode5
 Bugs, Issues, Typos..
 =====================
 
+I Hope this to be useful for you, or maybe saves you some coding-time...
+Please contact me if you hit any bugs, or you found any mandatory features missing or even typeos. My contact email is <acidmanic.moayedi@gmail.com> which is also included in the COC file. 
 
-Please contact me if you hit any bugs, or you found any mandatory features missing or even types. Thanks 👍
+ Thanks 👍
 
 
 
