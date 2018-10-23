@@ -10,6 +10,7 @@ import com.acidmanic.consoletools.drawing.AsciiBorders;
 import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
 import com.acidmanic.consoletools.table.Table;
 import com.acidmanic.consoletools.table.builders.TableBuilder;
+import com.acidmanic.consoletools.utility.Console;
 
 /**
  *
@@ -31,13 +32,10 @@ public class ExampleCode6 {
                 .cell("Middle").border()
                 .cell("Bottom-Right").border()
                 .row().cell((TableBuilder builder) -> builder.table(3, 3)
-                        .textAll("*").borderAll().padAll(3,1).tableBorder())
+                        .textAll("*").borderAll().padAll(3, 1).tableBorder())
                 .build();
 
-        BufferedStringRenderingContext context = new BufferedStringRenderingContext(table.measure());
-        context.clear();
-        table.render(context);
-        System.out.println(context.represent());
+        new Console().println(table);
 
     }
 }
