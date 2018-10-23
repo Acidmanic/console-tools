@@ -349,6 +349,15 @@ public class TableBuilder {
         return this;
     }
 
+    public TableBuilder maximumWidthAll(int maxwidth) {
+        this.table.scanAllCells((Box cell) -> {
+            if (cell instanceof Cell) {
+                ((Cell) cell).setMaximumWidth(maxwidth);
+            }
+        });
+        return this;
+    }
+
     /* Builds */
     public Table build() {
         return this.table;
