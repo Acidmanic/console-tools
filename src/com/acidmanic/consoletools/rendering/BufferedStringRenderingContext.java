@@ -5,9 +5,11 @@
  */
 package com.acidmanic.consoletools.rendering;
 
+import com.acidmanic.consoletools.rendering.sizing.SizeMatchStrategySolution;
+import com.acidmanic.consoletools.rendering.sizing.SizeMatchStrategy;
 import com.acidmanic.consoletools.drawing.Position;
 import com.acidmanic.consoletools.drawing.Size;
-import com.acidmanic.consoletools.drawing.ascii.Measurer;
+import com.acidmanic.consoletools.string.StringMeasurer;
 
 /**
  *
@@ -61,7 +63,7 @@ public class BufferedStringRenderingContext extends RenderingContextBase<String,
 
     @Override
     public void put(String content, SizeMatchStrategy putStrategy) {
-        Size size = new Measurer().getSize(content);
+        Size size = new StringMeasurer().getSize(content);
         SizeMatchStrategySolution solution = putStrategy.solve(size, this.currentClip.getSize());
         String[] lines = content.split("\\n");
         for (int l = 0; l < lines.length; l++) {

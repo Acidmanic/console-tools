@@ -5,8 +5,9 @@
  */
 package com.acidmanic.consoletools.rendering;
 
+import com.acidmanic.consoletools.rendering.componentfeatures.Renderable;
 import com.acidmanic.consoletools.drawing.Size;
-import com.acidmanic.consoletools.drawing.ascii.Measurer;
+import com.acidmanic.consoletools.string.StringMeasurer;
 import com.acidmanic.consoletools.textualcontent.StringModifierManager;
 import com.acidmanic.consoletools.textualcontent.builtin.BuiltinStringModifierPriority;
 
@@ -42,7 +43,7 @@ public class StringRenderable implements Renderable {
     @Override
     public Size measure() {
         String preprocessed = this.modifierManager.applyAll(this.content);
-        return new Measurer().getSize(preprocessed);
+        return new StringMeasurer().getSize(preprocessed);
     }
 
     public StringModifierManager getModifierManager() {

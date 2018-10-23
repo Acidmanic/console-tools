@@ -5,7 +5,7 @@
  */
 package consoletools.tests.playgrounds;
 
-import com.acidmanic.consoletools.drawing.interaction.InputTextBox;
+import com.acidmanic.consoletools.interaction.InputTextBox;
 
 /**
  *
@@ -26,7 +26,7 @@ public class ExampleCode5 {
         
         textBox.setWidth(40);
         
-        textBox.setLabel("This is going to be a logn label, it should be longer than 40 chars, then we can see if the label cell correctly breaks.");
+        textBox.setLabel("This is going to be a long label, it should be longer than 40 chars, then we can see if the label cell correctly breaks.");
         
         textBox.askInput();
         

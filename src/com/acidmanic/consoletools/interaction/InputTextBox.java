@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acidmanic.consoletools.drawing.interaction;
+package com.acidmanic.consoletools.interaction;
 
 import com.acidmanic.consoletools.drawing.Size;
-import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
-import com.acidmanic.consoletools.drawing.ascii.AsciiBorders;
+import com.acidmanic.consoletools.drawing.AsciiBorder;
+import com.acidmanic.consoletools.drawing.AsciiBorders;
 import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
-import com.acidmanic.consoletools.rendering.Renderable;
+import com.acidmanic.consoletools.rendering.componentfeatures.Renderable;
 import com.acidmanic.consoletools.rendering.RenderingContext;
 import com.acidmanic.consoletools.rendering.decorators.Bordered;
 import com.acidmanic.consoletools.table.Cell;

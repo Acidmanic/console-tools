@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acidmanic.consoletools.drawing.ascii;
-
-import com.acidmanic.consoletools.drawing.Padding;
+package com.acidmanic.consoletools.table.builders;
 
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public interface Paddable {
-    Padding getPadding();
-    void setPadding(Padding padding);
+public interface TableBuilderConsumer {
+    void accept(TableBuilder builder);
 }

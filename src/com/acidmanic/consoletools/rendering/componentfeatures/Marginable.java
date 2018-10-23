@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acidmanic.consoletools.rendering;
+package com.acidmanic.consoletools.rendering.componentfeatures;
 
-import com.acidmanic.consoletools.drawing.Size;
+import com.acidmanic.consoletools.drawing.Padding;
 
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public interface Renderable {
-    void render(RenderingContext context);
-    Size measure();
-    
+public interface Marginable {
+
+    Padding getMargins();
+
+    void setMargins(Padding margins);
 }

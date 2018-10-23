@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acidmanic.consoletools.rendering;
+package com.acidmanic.consoletools.rendering.sizing;
 
+import com.acidmanic.consoletools.rendering.componentfeatures.Renderable;
 import com.acidmanic.consoletools.drawing.Size;
 
 /**

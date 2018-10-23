@@ -5,20 +5,23 @@
  */
 package com.acidmanic.consoletools.rendering;
 
-import com.acidmanic.consoletools.drawing.Clip;
+import com.acidmanic.consoletools.rendering.componentfeatures.Renderable;
 import com.acidmanic.consoletools.drawing.Padding;
 import com.acidmanic.consoletools.drawing.Size;
-import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
-import com.acidmanic.consoletools.drawing.ascii.Paddable;
+import com.acidmanic.consoletools.drawing.AsciiBorder;
+import com.acidmanic.consoletools.rendering.componentfeatures.Paddable;
 import com.acidmanic.consoletools.rendering.decorators.Bordered;
 import com.acidmanic.consoletools.rendering.decorators.Padded;
 import com.acidmanic.consoletools.rendering.decorators.Resized;
+import com.acidmanic.consoletools.rendering.componentfeatures.Borderable;
+import com.acidmanic.consoletools.rendering.componentfeatures.Marginable;
+import com.acidmanic.consoletools.rendering.componentfeatures.Outlineable;
 
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public class Box implements Renderable, Paddable {
+public class Box implements Renderable, Paddable, Marginable, Borderable, Outlineable {
 
     private class Rect {
 
@@ -106,28 +109,35 @@ public class Box implements Renderable, Paddable {
         this.additionalEdges = getAddingEdgeSizes();
     }
 
+    @Override
     public AsciiBorder getBorder() {
         return border;
     }
 
+    @Override
     public void setBorder(AsciiBorder border) {
         this.border = border;
         setupHirarechy();
     }
 
+    @Override
     public AsciiBorder getOutline() {
         return outline;
     }
 
+    
+    @Override
     public void setOutline(AsciiBorder outline) {
         this.outline = outline;
         setupHirarechy();
     }
 
+    @Override
     public Padding getMargins() {
         return margins;
     }
 
+    @Override
     public void setMargins(Padding margins) {
         this.margins = margins;
         setupHirarechy();
@@ -184,14 +194,14 @@ public class Box implements Renderable, Paddable {
     }
 
     public void setWidth(int value) {
-        this.resized.setWidth(value-this.additionalEdges.horizontal);
+        this.resized.setWidth(value - this.additionalEdges.horizontal);
     }
 
     public int getHeight() {
-        return this.resized.getHeight()+this.additionalEdges.vertical;
+        return this.resized.getHeight() + this.additionalEdges.vertical;
     }
 
     public int getWidth() {
-        return this.resized.getWidth()+this.additionalEdges.horizontal;
+        return this.resized.getWidth() + this.additionalEdges.horizontal;
     }
 }

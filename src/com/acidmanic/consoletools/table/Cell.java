@@ -42,4 +42,12 @@ public class Cell extends Box {
         }
     }
 
+    public void setText(String text) {
+        this.content.setContent(text);
+    }
+
+    public String getText() {
+        return this.content.getContent();
+    }
+
 }

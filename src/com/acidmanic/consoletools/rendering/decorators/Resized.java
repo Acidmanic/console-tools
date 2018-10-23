@@ -6,9 +6,9 @@
 package com.acidmanic.consoletools.rendering.decorators;
 
 import com.acidmanic.consoletools.drawing.Size;
-import com.acidmanic.consoletools.rendering.Renderable;
+import com.acidmanic.consoletools.rendering.componentfeatures.Renderable;
 import com.acidmanic.consoletools.rendering.RenderingContext;
-import com.acidmanic.consoletools.rendering.SizeAutomation;
+import com.acidmanic.consoletools.rendering.sizing.SizeAutomation;
 
 /**
  *

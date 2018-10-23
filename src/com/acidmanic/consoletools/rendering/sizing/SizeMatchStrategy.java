@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acidmanic.consoletools.table;
+package com.acidmanic.consoletools.rendering.sizing;
 
-import com.acidmanic.consoletools.rendering.Box;
-import com.acidmanic.consoletools.rendering.componentfeatures.Renderable;
+import com.acidmanic.consoletools.drawing.Size;
 
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
-public interface CellScanner {
-    void scan(Box cell);
+public interface SizeMatchStrategy {
+
+    SizeMatchStrategySolution solve(Size actual, Size expected);
+
 }

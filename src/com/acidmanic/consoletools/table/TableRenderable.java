@@ -7,9 +7,9 @@ package com.acidmanic.consoletools.table;
 
 import com.acidmanic.consoletools.drawing.Padding;
 import com.acidmanic.consoletools.drawing.Size;
-import com.acidmanic.consoletools.drawing.ascii.AsciiBorder;
+import com.acidmanic.consoletools.drawing.AsciiBorder;
 import com.acidmanic.consoletools.rendering.Box;
-import com.acidmanic.consoletools.rendering.Renderable;
+import com.acidmanic.consoletools.rendering.componentfeatures.Renderable;
 import com.acidmanic.consoletools.rendering.RenderingContext;
 import java.util.ArrayList;
 import java.util.List;

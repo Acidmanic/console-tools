@@ -7,10 +7,10 @@ package com.acidmanic.consoletools.playgrounds;
 
 import com.acidmanic.consoletools.drawing.Padding;
 import com.acidmanic.consoletools.drawing.Size;
-import com.acidmanic.consoletools.drawing.ascii.AsciiBorders;
+import com.acidmanic.consoletools.drawing.AsciiBorders;
 import com.acidmanic.consoletools.rendering.Box;
 import com.acidmanic.consoletools.rendering.BufferedStringRenderingContext;
-import com.acidmanic.consoletools.rendering.Renderable;
+import com.acidmanic.consoletools.rendering.componentfeatures.Renderable;
 import com.acidmanic.consoletools.table.Cell;
 
 /**
