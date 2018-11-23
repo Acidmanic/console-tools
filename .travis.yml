@@ -1,0 +1,12 @@
+language: java
+sudo: false
+script: ant jar
+deploy:
+  provider: releases
+  skip-cleanup: true
+  api_key: $GITHUB_TOKEN 
+  keep-history: true
+  file: $TRAVIS_BUILD_DIR/dist/console-tools.jar
+  on:
+    branch: master
+    tags: true
