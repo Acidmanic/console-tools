@@ -1,3 +1,7 @@
+[![CI Status](https://img.shields.io/travis/rust-lang/rust.svg?style=flat)](https://travis-ci.org/Acidmanic/console-tools) [![Release](https://img.shields.io/badge/dynamic/json.svg?style=flat&label=Release&url=https%3A%2F%2Fapi.github.com%2Frepos%2FAcidmanic%2Fconsole-tools%2Freleases&query=%24.0.tag_name&colorB=green)](https://github.com/Acidmanic/console-tools/releases) [![GitHub license](https://img.shields.io/github/license/Acidmanic/my-oc-container.svg)](https://github.com/Acidmanic/console-tools/blob/develop/LICENSE)
+
+
+
 What does this library have?
 ============================
 
