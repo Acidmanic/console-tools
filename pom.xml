@@ -1,0 +1,155 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.acidmanic</groupId>
+  <artifactId>console-tools</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0.0</version>
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>
+	This is a Java library for drawing tabels, text interaction with user and change style and color of text on console. 
+  </description>
+  <url>https://github.com/Acidmanic/console-tools</url>
+  <licenses>
+    <license>
+      <name>GNU General Public License v3.0</name>
+      <url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Mani Moayedi</name>
+      <email>acidmanic.moayedi@gmail.com</email>
+      <organization>Acidmanic</organization>
+      <organizationUrl>http://www.acidmanic.com</organizationUrl>
+    </developer>
+  </developers>
+
+
+  <scm>
+    <connection>scm:git:git://github.com/Acidmanic/console-tools.git</connection>
+    <developerConnection>scm:git:ssh://github.com:Acidmanic/console-tools.git</developerConnection>
+    <url>http://github.com/Acidmanic/console-tools</url>
+  </scm>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+
+  <build>
+     <sourceDirectory>src</sourceDirectory>
+     <testSourceDirectory>test</testSourceDirectory>
+
+
+     <plugins>
+        <!-- jar plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestFile>manifest.mf</manifestFile>
+          </archive>
+        </configuration>
+      </plugin>
+
+         <!-- maven source-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- maven javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- GPG -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+       
+                </configuration>
+            </plugin>
+
+	    
+
+
+	<!-- Finally SonaType Deploy plugin -->
+      <plugin>
+         <groupId>org.sonatype.plugins</groupId>
+         <artifactId>nexus-staging-maven-plugin</artifactId>
+         <version>1.6.8</version>
+         <extensions>true</extensions>
+         <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+         </configuration>
+     </plugin>
+
+     </plugins>
+
+
+  </build>
+
+
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+    </dependency>
+  </dependencies>
+
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+  </distributionManagement>
+
+</project>
+
+
+

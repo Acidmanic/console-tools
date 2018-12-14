@@ -1,5 +1,6 @@
 language: java
 sudo: false
+install: true
 script: ant jar
 deploy:
   provider: releases
