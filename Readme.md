@@ -44,8 +44,11 @@ Gradle:
 	implementation 'com.acidmanic:console-tools:1.0.0
 ```
 
-How to use it
-=============
+
+
+
+How to use:
+=======
 
 Print Styled text.
 ----------------------
