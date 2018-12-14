@@ -16,6 +16,9 @@
  */
 package com.acidmanic.consoletools.interaction;
 
+import java.io.InputStream;
+import java.io.PrintStream;
+
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
@@ -25,27 +28,34 @@ public abstract class Input<T> {
 
     protected T value;
     private String label;
-
+    protected PrintStream out;
+    protected InputStream in;
+    
+    
     public Input(String label, T value) {
+        this();
         this.value = value;
         this.label = label;
     }
 
     public Input(String label) {
+        this();
         this.label = label;
     }
 
     public Input() {
+        this.out = System.out;
+        this.in = System.in;
     }
 
     protected void printLabel() {
-        System.out.println();
-        System.out.print(label);
+        this.out.println();
+        this.out.print(label);
         String valueString = getStringForValue();
         if (valueString != null && !valueString.isEmpty()) {
-            System.out.print(" (" + this.getStringForValue() + ")");
+            this.out.print(" (" + this.getStringForValue() + ")");
         }
-        System.out.println(":");
+        this.out.println(":");
     }
 
     protected String getStringForValue() {
@@ -73,7 +83,7 @@ public abstract class Input<T> {
 
     protected int tryReadChar() {
         try {
-            return System.in.read();
+            return this.in.read();
         } catch (Exception e) {
         }
         return -1;
