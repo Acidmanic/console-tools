@@ -106,5 +106,23 @@ public abstract class Input<T> {
         return res;
     }
 
+    public PrintStream getOut() {
+        return out;
+    }
+
+    public void setOut(PrintStream out) {
+        this.out = out;
+    }
+
+    public InputStream getIn() {
+        return in;
+    }
+
+    public void setIn(InputStream in) {
+        this.in = in;
+    }
+
+    
+    
     public abstract T askInput();
 }

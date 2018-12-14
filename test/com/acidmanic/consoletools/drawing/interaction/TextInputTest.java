@@ -16,12 +16,14 @@ import static org.junit.Assert.*;
 public class TextInputTest {
     
     public TextInputTest() {
+        
     }
 
     @Test
     public void testAskInput() {
         System.out.println("askInput");
         TextInput instance = new TextInput("Please just hit Enter","Default");
+        instance.setIn(new PrefillableInputStream("\n"));
         String expResult = "Default";
         String result = instance.askInput();
         assertEquals(expResult, result);
@@ -32,6 +34,7 @@ public class TextInputTest {
     public void testAskInputNull() {
         System.out.println("askInput");
         TextInput instance = new TextInput("Please just hit Enter");
+        instance.setIn(new PrefillableInputStream("\n"));
         String expResult = "";
         String result = instance.askInput();
         assertEquals(expResult, result);
