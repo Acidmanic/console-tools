@@ -1,6 +1,10 @@
 [![CI Status](https://img.shields.io/travis/rust-lang/rust.svg?style=flat)](https://travis-ci.org/Acidmanic/console-tools) [![Release](https://img.shields.io/badge/dynamic/json.svg?style=flat&label=Release&url=https%3A%2F%2Fapi.github.com%2Frepos%2FAcidmanic%2Fconsole-tools%2Freleases&query=%24.0.tag_name&colorB=green)](https://github.com/Acidmanic/console-tools/releases) [![GitHub license](https://img.shields.io/github/license/Acidmanic/my-oc-container.svg)](https://github.com/Acidmanic/console-tools/blob/develop/LICENSE)
 
+---------
 
+<img src="https://maven.apache.org/images/maven-logo-black-on-white.png" width="90px" height="26px" />  <img src="https://raw.githubusercontent.com/gradle/gradle/master/gradle.png" width="100px" height="32px" />
+
+--------
 
 What does this library have?
 ============================
@@ -18,8 +22,27 @@ Dependency
 This library does not depend on any external dependency.
 
 
+How to get
+=======
 
+Maven:
+-------
 
+```xml
+
+<dependency>
+  <groupId>com.acidmanic</groupId>
+  <artifactId>console-tools</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+Gradle:
+-------
+
+```
+	implementation 'com.acidmanic:console-tools:1.0.0
+```
 
 How to use it
 =============
